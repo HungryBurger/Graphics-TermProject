@@ -2,7 +2,7 @@
 <hr>
 
 
-##Member
+## Member
 > 이세진
 > 장동주
 > 주형진
@@ -14,7 +14,7 @@ Let me introduce our Class Room Project
 
 ```
 
-##Strategy
+## Strategy
 ```
 
 
