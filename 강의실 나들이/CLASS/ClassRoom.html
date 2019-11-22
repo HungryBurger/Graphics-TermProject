@@ -34,13 +34,13 @@ main()
 <script type="text/javascript" src="../Common/webgl-utils.js"></script>
 <script type="text/javascript" src="../Common/initShaders.js"></script>
 <script type="text/javascript" src="../Common/MV.js"></script>
-<script type="text/javascript" src="Main.js"></script>
+<script type="text/javascript" src="../Common/threeJS/build/three.js"></script>
+<script type="text/javascript" src="../Common/threeJS/build/three.min.js"></script>
 
 <body>
     <div>
-        <canvas id="gl-canvas" width="720" height="720" style="border:1px solid green; float:left;">
-            Oops ... your browser doesn't support the HTML5 canvas element
-        </canvas>
+        <div id="threejs_scene"></div>
+        <script type="text/javascript" src="Main.js"></script>
         <div style="width:300px; height:100%; border:1px solid green; float:left;">
             <p> </p>
             <button id="Button1">불끄기/불켜기</button>
