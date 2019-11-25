@@ -14,7 +14,7 @@ include("LSJ.js");
 window.onload = function init() {
    var scene = new THREE.Scene();
    var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
-   var renderer = new THREE.WebGLRenderer();
+   var renderer = new THREE.WebGLRenderer({ antialias: true })
    //For bouncing balls;
    var step = 0;
    renderer.setClearColor(0xEEEEEE);
@@ -29,12 +29,13 @@ window.onload = function init() {
    //Let's make a cube
    //JHJ.js 파일 확인할 것
    //요런식으로 쓰면 될듯(애니메이션 쓸거면 이렇게 함수에서 return 시켜서 데려와야댐)
-   var cube = makeCube(scene);
-   var sphere = makeSphere1(scene);
-   var sphere2 = makeSphere2(scene); 
+   //var cube = makeCube(scene);
+   //var sphere = makeSphere1(scene);
+   //var sphere2 = makeSphere2(scene); 
+   var whiteboard=makeWhiteboard(scene);
 
    var spotLight = new THREE.SpotLight(0xFFFFFF);
-   spotLight.position.set(-40, 60, 30);
+   spotLight.position.set(0, 30, 50);
    spotLight.castShadow = true;
    spotLight.shadow.mapSize.width = 5120;
    spotLight.shadow.mapSize.height = 5120;
@@ -44,18 +45,22 @@ window.onload = function init() {
    camera.position.z = 30;
    camera.lookAt(scene.position);
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
+   controls = new THREE.OrbitControls(camera, renderer.domElement);
+
    // renderScene();
    var renderScene = new function renderScene() {
       requestAnimationFrame(renderScene);
       //cube animation
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      cube.rotation.z += 0.01;
+      //cube.rotation.x += 0.01;
+      // cube.rotation.y += 0.01;
+      // cube.rotation.z += 0.01;
       //sphere animation  
-      step += 0.1;
-      sphere.position.y = 9 + (5 * Math.cos(step));
-      sphere2.position.y = 9 + (5 * Math.cos(step + 3));
+      //step += 0.1;
+      //sphere.position.y = 9 + (5 * Math.cos(step));
+      //sphere2.position.y = 9 + (5 * Math.cos(step + 3));
+      
       renderer.render(scene, camera);
+      contorls.update();
    }
 }
 

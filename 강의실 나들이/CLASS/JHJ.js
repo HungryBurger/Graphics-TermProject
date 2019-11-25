@@ -16,6 +16,7 @@ function makePlane(scene) {
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
     plane.receiveShadow = true;
     plane.rotation.x = -0.5 * Math.PI;
+    plane.position.y=-10;
     scene.add(plane);
     return plane;
 }
