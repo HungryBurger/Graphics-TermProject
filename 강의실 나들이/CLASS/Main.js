@@ -27,7 +27,8 @@ window.onload = function init() {
    //정적인 object할때는 return 할 필요없어
    //makePlane(scene);
    
-   Desk(scene);
+   drawDesk(scene);
+   drawChair(scene);
 
    
    //Let's make a cube
@@ -35,11 +36,17 @@ window.onload = function init() {
    //요런식으로 쓰면 될듯(애니메이션 쓸거면 이렇게 함수에서 return 시켜서 데려와야댐)
   
    var spotLight = new THREE.SpotLight(0xFFFFFF);
-   spotLight.position.set(-40, 60, 30);
+   spotLight.position.set(-30, 30, 0);
    spotLight.castShadow = true;
    spotLight.shadow.mapSize.width = 5120;
    spotLight.shadow.mapSize.height = 5120;
    scene.add(spotLight);
+   var spotLight2 = new THREE.SpotLight(0xFFFFFF);
+   spotLight2.position.set(30, 30, 0);
+   spotLight2.castShadow = true;
+   spotLight2.shadow.mapSize.width = 5120;
+   spotLight2.shadow.mapSize.height = 5120;
+   scene.add(spotLight2);
    camera.position.x = 0;
    camera.position.y = 30;
    camera.position.z = 30;
