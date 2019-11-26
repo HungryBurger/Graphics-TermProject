@@ -12,15 +12,36 @@ function makeGround(x, y, z, pos_x, pos_y, pos_z) {
     cube.position.z = pos_z;
     ClassRoom.add(cube);
 }
-function makeWall(x, y, z, pos_x, pos_y, pos_z) {
+function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
-    texture.rotation = Math.PI / 360 * 180;
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    //cube.castShadow = true;
+    cube.rotation.x = -0.5 * Math.PI;
     cube.position.x = pos_x;
     cube.position.y = pos_y;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
+}
+function makeWall(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.rotation.x = -0.5 * Math.PI;
+    cube.position.x = pos_x;
+    cube.position.y = pos_y;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
+}
+
+function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.position.x = pos_x;
+    cube.position.y = pos_y+200;
     cube.position.z = pos_z;
     ClassRoom.add(cube);
 }
@@ -28,9 +49,16 @@ function makeWall(x, y, z, pos_x, pos_y, pos_z) {
 function drawClassRoom(scene) {
     for (var i = 0; i < 16; i++) {
         for (var j = 0; j < 9; j++) {
-            makeGround(100.6, 0.6, 100.6, 2.5 + 100 * i, -15.5, 0 + 100 * j);
-            makeGround(100.6, 0.6, 100.6, 2.5 + 100 * i, -15.5, 0 + 100 * j);
+            makeGround(50.6, 0.6, 50.6, 2.5 + 50 * i, -15.5, 0 + 50 * j);
+            makeCeiling(50.6, 0.6, 50.6, 2.5 + 50 * i, -15.5, 0 + 50 * j);
         }
     }
+    for (var i = 0; i < 16; i++) {
+        for (var j = 0; j < 4; j++) {
+            makeWall(50.6, 0.6, 50.6, 2.5 + 50 * i, 10+ 50 * j,-25);
+            makeWall(50.6, 0.6, 50.6, 2.5 + 50 * i, 10+ 50 * j,425);
+        }
+    }
+
     scene.add(ClassRoom);
 }
