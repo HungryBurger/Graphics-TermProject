@@ -33,13 +33,19 @@ window.onload = function init() {
    //var sphere = makeSphere1(scene);
    //var sphere2 = makeSphere2(scene); 
    var whiteboard=makeWhiteboard(scene);
-
-   var spotLight = new THREE.SpotLight(0xFFFFFF);
-   spotLight.position.set(0, 30, 50);
-   spotLight.castShadow = true;
-   spotLight.shadow.mapSize.width = 5120;
-   spotLight.shadow.mapSize.height = 5120;
-   scene.add(spotLight);
+   var lectureDesk=makeLectureDesk(scene);
+   var spotLight1 = new THREE.SpotLight(0xFFFFFF);
+   spotLight1.position.set(0, 30, 50);
+   spotLight1.castShadow = true;
+   spotLight1.shadow.mapSize.width = 5120;
+   spotLight1.shadow.mapSize.height = 5120;
+   // var spotLight2 = new THREE.SpotLight(0xFFFFFF);
+   // spotLight2.position.set(0, 30, 50);
+   // spotLight2.castShadow = true;
+   // spotLight2.shadow.mapSize.width = 5120;
+   // spotLight2.shadow.mapSize.height = 5120;
+   scene.add(spotLight1);
+   // scene.add(spotLight2);
    camera.position.x = 0;
    camera.position.y = 30;
    camera.position.z = 30;
