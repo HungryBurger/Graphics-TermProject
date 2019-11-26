@@ -238,13 +238,13 @@ function makeLectureDesk(scene)
     cylinder2.position.z=cylinder1.position.z+0.6;
     scene.add( cylinder2 );
 
-    wheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
-    wheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
-    wheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
-    wheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
+    lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
+    lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
+    lectureDeskWheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
+    lectureDeskWheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
 }
 
-function wheel(scene, x, y, z) {
+function lectureDeskWheel(scene, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.05, 1.05, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
