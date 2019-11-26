@@ -30,6 +30,7 @@ window.onload = function init() {
    
    drawDesk(scene);
    drawChair(scene);
+   drawClassRoom(scene);
 
    
    //Let's make a cube
