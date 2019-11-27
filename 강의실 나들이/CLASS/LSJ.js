@@ -1,8 +1,5 @@
-var Desk = new THREE.Group();
-var Chair = new THREE.Group();
-
 // 테이블
-function makeBoard(scene) {
+function makeBoard(Desk) {
     var cubeGeometry = new THREE.BoxGeometry(15.6, 0.6, 42.6);
     var texture = new THREE.TextureLoader().load('table.jpg');
     texture.rotation = Math.PI / 360 * 180;
@@ -16,7 +13,7 @@ function makeBoard(scene) {
 }
 
 // 테이블 바로 밑 덧붙임 판
-function deskFrame1(scene) {
+function deskFrame1(Desk) {
     var geometry = new THREE.BoxGeometry(7, 0.6, 42);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
@@ -26,7 +23,7 @@ function deskFrame1(scene) {
 }
 
 // 받침대
-function deskFrame2(scene) {
+function deskFrame2(Desk) {
     var geometry = new THREE.BoxGeometry(10, 0.2, 32.5);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
@@ -37,7 +34,7 @@ function deskFrame2(scene) {
 }
 
 // 다리쪽 가림막
-function deskFrame3(scene) {
+function deskFrame3(Desk) {
     var geometry = new THREE.BoxGeometry(7, 0.2, 36);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
@@ -49,7 +46,7 @@ function deskFrame3(scene) {
 }
 
 // 다리쪽 가림막 지지대
-function frameHolder1(scene) {
+function frameHolder1(Desk) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -59,7 +56,7 @@ function frameHolder1(scene) {
     cylinder.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder);
 }
-function frameHolder2(scene) {
+function frameHolder2(Desk) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -70,7 +67,7 @@ function frameHolder2(scene) {
     Desk.add(cylinder);
 }
 
-function makeLeg1(scene) {
+function makeLeg1(Desk) {
     var legPoints = [
         new THREE.Vector3(0, 10, 19.5),
         new THREE.Vector3(-4, 0, 19.5),
@@ -98,7 +95,7 @@ function makeLeg1(scene) {
     var mesh = new THREE.Mesh(geometry, material2);
     Desk.add(mesh);
 }
-function makeLeg2(scene) {
+function makeLeg2(Desk) {
     var legPoints = [
         new THREE.Vector3(0, 10, 17.5),
         new THREE.Vector3(-4, 0, 17.5),
@@ -126,7 +123,7 @@ function makeLeg2(scene) {
     Desk.add(mesh);
 }
 
-function legFrame(scene) {
+function legFrame(Desk) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -146,7 +143,7 @@ function legFrame(scene) {
     Desk.add(cylinder2);
 }
 
-function makeLeg1_2(scene) {
+function makeLeg1_2(Desk) {
     var legPoints = [
         new THREE.Vector3(0, 10, -19.5),
         new THREE.Vector3(-4, 0, -19.5),
@@ -174,7 +171,7 @@ function makeLeg1_2(scene) {
     var mesh = new THREE.Mesh(geometry, material2);
     Desk.add(mesh);
 }
-function makeLeg2_2(scene) {
+function makeLeg2_2(Desk) {
     var legPoints = [
         new THREE.Vector3(0, 10, -17.5),
         new THREE.Vector3(-4, 0, -17.5),
@@ -202,7 +199,7 @@ function makeLeg2_2(scene) {
     Desk.add(mesh);
 }
 
-function legFrame2(scene) {
+function legFrame2(Desk) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -222,7 +219,7 @@ function legFrame2(scene) {
     Desk.add(cylinder2);
 }
 
-function wheel(scene, x, y, z) {
+function wheel(Desk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.05, 1.05, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -283,30 +280,36 @@ function wheel(scene, x, y, z) {
 }
 
 
-function drawDesk(scene) {
-    this.makeBoard(scene);
-    this.makeLeg1(scene);
-    this.makeLeg2(scene);
-    this.legFrame(scene);
-    this.makeLeg1_2(scene);
-    this.makeLeg2_2(scene);
-    this.legFrame2(scene);
-    this.wheel(scene, 7, -12, 19.5)
-    this.wheel(scene, -4.5, -12, 17.5)
-    this.wheel(scene, 7, -12, -19.5)
-    this.wheel(scene, -4.5, -12, -17.5)
-    this.deskFrame1(scene);
-    this.deskFrame2(scene);
-    this.deskFrame3(scene);
-    this.frameHolder1(scene);
-    this.frameHolder2(scene);
+function drawDesk(scene, x, y, z) {
+    var Desk = new THREE.Group();
+
+    this.makeBoard(Desk);
+    this.makeLeg1(Desk);
+    this.makeLeg2(Desk);
+    this.legFrame(Desk);
+    this.makeLeg1_2(Desk);
+    this.makeLeg2_2(Desk);
+    this.legFrame2(Desk);
+    this.wheel(Desk, 7, -12, 19.5)
+    this.wheel(Desk, -4.5, -12, 17.5)
+    this.wheel(Desk, 7, -12, -19.5)
+    this.wheel(Desk, -4.5, -12, -17.5)
+    this.deskFrame1(Desk);
+    this.deskFrame2(Desk);
+    this.deskFrame3(Desk);
+    this.frameHolder1(Desk);
+    this.frameHolder2(Desk);
+
+    Desk.position.x = x;
+    Desk.position.y = y;
+    Desk.position.z = z;
 
     scene.add(Desk);
 }
 
 
 // 의자 등받이
-function chairBack1(scene) {
+function chairBack1(Chair) {
     var legPoints = [
         new THREE.Vector3(0, 0, 6),
         new THREE.Vector3(0.8, 0, 3),
@@ -339,7 +342,7 @@ function chairBack1(scene) {
     Chair.add(mesh);
 }
 // 팔받힘대
-function chairBack2(scene) {
+function chairBack2(Chair) {
     var legPoints = [
         new THREE.Vector3(0, 0, 6),
         new THREE.Vector3(-1, 0, 6.5),
@@ -379,7 +382,7 @@ function chairBack2(scene) {
     Chair.add(mesh);
 }
 // 팔받힘대2
-function chairBack3(scene) {
+function chairBack3(Chair) {
     var legPoints = [
         new THREE.Vector3(0, 0, -6),
         new THREE.Vector3(-1, 0, -6.5),
@@ -419,7 +422,7 @@ function chairBack3(scene) {
 }
 
 //팔받힘대3
-function armHolder(scene, x, y, z, direction) {
+function armHolder(Chair, x, y, z, direction) {
     var trackShape = new THREE.Shape()
         .moveTo(4, 4)
         .lineTo(4, 16)
@@ -428,31 +431,31 @@ function armHolder(scene, x, y, z, direction) {
         .absarc(6, 4, 2, 2 * Math.PI, Math.PI, true);
 
     var extrudeSettings = { depth: 1, bevelEnabled: true, bevelSegments: 10, steps: 5, bevelSize: 1, bevelThickness: 1 };
-    var geometry = new THREE.ExtrudeBufferGeometry( trackShape, extrudeSettings );
+    var geometry = new THREE.ExtrudeBufferGeometry(trackShape, extrudeSettings);
     var shear = new THREE.Matrix4();
-    if(direction == 1)
+    if (direction == 1)
         shear.set(1, 1 / Math.tan(Math.PI / 180 * -85), 0, 0,
             0, 1, 0, 0,
             0, 0, 1, 0,
             0, 0, 0, 1);
-    if(direction == 0)
+    if (direction == 0)
         shear.set(1, 1 / Math.tan(Math.PI / 180 * 85), 0, 0,
             0, 1, 0, 0,
             0, 0, 1, 0,
             0, 0, 0, 1);
     geometry.applyMatrix(shear);
-    var mesh = new THREE.Mesh( geometry, new THREE.MeshPhongMaterial( { color: 0x333333 } ) );
+    var mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: 0x333333 }));
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
 
     mesh.scale.set(0.25, 0.25, 0.25);
-    mesh.rotateZ(Math.PI/2);
-    mesh.rotateY(Math.PI/2);
+    mesh.rotateZ(Math.PI / 2);
+    mesh.rotateY(Math.PI / 2);
     Chair.add(mesh);
 }
 
-function chairLeg1(scene, x, y, z) {
+function chairLeg1(Chair, x, y, z) {
     var legPoints = [
         new THREE.Vector3(0, 8, 0),
         new THREE.Vector3(4, -1, 0),
@@ -485,7 +488,87 @@ function chairLeg1(scene, x, y, z) {
     Chair.add(mesh);
 }
 
-function chairFrame1(scene, x, y, z) {
+// 의자 앞다리
+function chairLeg2(Chair, x, y, z) {
+    var legPoints = [
+        new THREE.Vector3(0, 1, 0),
+        new THREE.Vector3(-1, -4.5, 0),
+        new THREE.Vector3(-2, -10, 0),
+        new THREE.Vector3(-2, -13, 0)
+    ];
+
+    var legSpline = new THREE.CatmullRomCurve3(legPoints);
+
+    var extrudeSettings = {
+        steps: 200,
+        bevelEnabled: false,
+        extrudePath: legSpline
+    };
+    var pts = [], numPts = 100;
+    for (var i = 0; i < numPts * 2; i++) {
+        var l = 0.5;
+        var a = i / numPts * Math.PI;
+        pts.push(new THREE.Vector2(Math.cos(a) * l, Math.sin(a) * l));
+    }
+    var shape = new THREE.Shape(pts);
+    var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+    //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
+    var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    Chair.add(mesh);
+}
+// 의자 앞 지지대
+function chairFrame2(Chair, x, y, z, s_z) {
+    var legPoints = [
+        new THREE.Vector3(0, 1, 6),
+        new THREE.Vector3(0, 0.8, 2),
+        new THREE.Vector3(0, 0.8, -2),
+        new THREE.Vector3(0, 1, -6)
+    ];
+
+    var legSpline = new THREE.CatmullRomCurve3(legPoints);
+
+    var extrudeSettings = {
+        steps: 200,
+        bevelEnabled: false,
+        extrudePath: legSpline
+    };
+    var pts = [], numPts = 100;
+    for (var i = 0; i < numPts * 2; i++) {
+        var l = 0.5;
+        var a = i / numPts * Math.PI;
+        pts.push(new THREE.Vector2(Math.cos(a) * l, Math.sin(a) * l));
+    }
+    var shape = new THREE.Shape(pts);
+    var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+    //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
+    var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+    mesh.scale.set(1, 1, s_z);
+
+    Chair.add(mesh);
+}
+
+function chairFrame3(Chair, x, y, z) {
+    var geometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 9.25, 32);
+    var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.rotateZ(Math.PI / 180 * 90);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    Chair.add(mesh);
+}
+
+function chairFrame1(Chair, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(0.7, 0.7, 4, 32);
     var shear = new THREE.Matrix4();
     shear.set(1, 1 / Math.tan(Math.PI / 180 * -67), 0, 0,
@@ -501,7 +584,7 @@ function chairFrame1(scene, x, y, z) {
     Chair.add(mesh);
 }
 
-function legCover(scene, x, y, z) {
+function legCover(Chair, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(0.57, 0.57, 1, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
@@ -515,25 +598,78 @@ function legCover(scene, x, y, z) {
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = x;
-    mesh.position.y = y-0.5;
+    mesh.position.y = y - 0.5;
     mesh.position.z = z;
     Chair.add(mesh);
 }
 
-function drawChair(scene) {
-    chairBack1(scene);
-    chairBack2(scene);
-    chairBack3(scene);
-    chairFrame1(scene, 11.25, 7.5, 7.25);
-    chairFrame1(scene, 11.25, 7.5, -7.25);
-    chairLeg1(scene, 11, 0, 7.25);
-    chairLeg1(scene, 11, 0, -7.25);
-    armHolder(scene, 14.25, 9.1, 8.425, 1);
-    armHolder(scene, 14.25, 9.1, -5.425, 0);
-    legCover(scene, 15.25, -7.5, 7.25)
-    legCover(scene, 19.1, -12.5, 7.25)
-    legCover(scene, 11.25, -7.5, -7.25)
-    legCover(scene, 19.1, -12.5, -7.25)
+// 앉는 곳
+function chairSeat(Chair, x, y, z) {
+    var legPoints = [
+        new THREE.Vector3(0, 1.3, 6.5),
+        new THREE.Vector3(0, 1.1, 2),
+        new THREE.Vector3(0, 1.1, -2),
+        new THREE.Vector3(0, 1.3, -6.5)
+    ];
+
+    var legSpline = new THREE.CatmullRomCurve3(legPoints);
+
+    var extrudeSettings = {
+        steps: 200,
+        bevelEnabled: false,
+        extrudePath: legSpline
+    };
+    var plane = new THREE.PlaneGeometry(13, 0.6);
+    var pts = [];
+    pts.push(plane.vertices[0]);
+    pts.push(plane.vertices[1]);
+    pts.push(plane.vertices[3]);
+    pts.push(plane.vertices[2]);
+    var shape = new THREE.Shape(pts);
+    var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+    //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
+    var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+
+    Chair.add(mesh);
+}
+
+function drawChair(scene, x, y, z) {
+    var Chair = new THREE.Group();
+
+    chairBack1(Chair);
+    chairBack2(Chair);
+    chairBack3(Chair);
+    chairFrame1(Chair, 11.25, 7.5, 7.25);
+    chairFrame1(Chair, 11.25, 7.5, -7.25);
+    chairFrame2(Chair, 5, -0.5, 0, 1);
+    chairFrame2(Chair, 14.25, -0.5, 0, 1.16);
+    chairFrame3(Chair, 9.625, 0.3, 2);
+    chairFrame3(Chair, 9.625, 0.3, -2);
+    chairLeg1(Chair, 11, 0, 7.25);
+    chairLeg1(Chair, 11, 0, -7.25);
+    chairLeg2(Chair, 5, 0, 6);
+    chairLeg2(Chair, 5, 0, -6);
+    armHolder(Chair, 14.25, 9.1, 8.425, 1);
+    armHolder(Chair, 14.25, 9.1, -5.425, 0);
+    legCover(Chair, 3, -12.5, 6)
+    legCover(Chair, 19.05, -12.5, 7.25)
+    legCover(Chair, 3, -12.5, -6)
+    legCover(Chair, 19.05, -12.5, -7.25)
+    chairSeat(Chair, 9, 0, 0);
+
+    Chair.position.x = x;
+    Chair.position.y = y;
+    Chair.position.z = z;
 
     scene.add(Chair);
+}
+
+function two_person_set(scene, x, y, z) {
+    drawDesk(scene, x, y, z);
+    drawChair(scene, x, y, z+10);
+    drawChair(scene, x, y, z-10);
 }
