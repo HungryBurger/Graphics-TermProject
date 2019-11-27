@@ -1,44 +1,64 @@
-function makeCube(scene) {
-    var cubeGeometry = new THREE.BoxGeometry(6, 6, 6);
-    var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0x0089A0 });
-    var cube = new THREE.Mesh(cubeGeometry, cubeMeterial);
-    cube.castShadow = true;
-    cube.position.x = 0;
-    cube.position.y = 10;
-    cube.position.z = 10;
-    scene.add(cube);
-    return cube;
+var ClassRoom = new THREE.Group();
+var Aisle = new THREE.Group();
+
+function makeGround(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    //cube.castShadow = true;
+    cube.position.x = pos_x;
+    cube.position.y = pos_y;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
+}
+function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.rotation.x = -0.5 * Math.PI;
+    cube.position.x = pos_x;
+    cube.position.y = pos_y;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
+}
+function makeWall(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.rotation.x = -0.5 * Math.PI;
+    cube.position.x = pos_x;
+    cube.position.y = pos_y;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
 }
 
-function makePlane(scene) {
-    var planeGeometry = new THREE.PlaneGeometry(60, 30, 1, 1);
-    var planeMaterial = new THREE.MeshPhongMaterial({ color: 0xCCCCCC });
-    var plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    plane.receiveShadow = true;
-    plane.rotation.x = -0.5 * Math.PI;
-    plane.position.y=-10;
-    scene.add(plane);
-    return plane;
+function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
+    var cubeGeometry = new THREE.BoxGeometry(x, y, z);
+    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.position.x = pos_x;
+    cube.position.y = pos_y+200;
+    cube.position.z = pos_z;
+    ClassRoom.add(cube);
 }
-function makeSphere1 (scene){
-    var sphereGeometry = new THREE.SphereGeometry(4, 32, 32);
-    var sphereMeterial = new THREE.MeshPhongMaterial({ color: 0xFE98A0 });
-    var sphere = new THREE.Mesh(sphereGeometry, sphereMeterial);
-    sphere.castShadow = true;
-    sphere.position.x = -15;
-    sphere.position.y = 4;
-    sphere.position.z = 0;
-    scene.add(sphere);
-    return sphere;
-}
-function makeSphere2(scene){
-    var sphereGeometry = new THREE.SphereGeometry(4, 32, 32);
-    var sphereMeterial2 = new THREE.MeshPhongMaterial({ color: 0xFEE721 });
-    var sphere2 = new THREE.Mesh(sphereGeometry, sphereMeterial2);
-    sphere2.castShadow = true;
-    sphere2.position.x = 15;
-    sphere2.position.y = 4;
-    sphere2.position.z = 0;
-    scene.add(sphere2);
-    return sphere2;
+
+function drawClassRoom(scene) {
+    for (var i = 0; i < 16; i++) {
+        for (var j = 0; j < 9; j++) {
+            makeGround(50.6, 0.6, 50.6, 2.5 + 50 * i, -15.5, 0 + 50 * j);
+            makeCeiling(50.6, 0.6, 50.6, 2.5 + 50 * i, -15.5, 0 + 50 * j);
+        }
+    }
+    for (var i = 0; i < 16; i++) {
+        for (var j = 0; j < 4; j++) {
+            makeWall(50.6, 0.6, 50.6, 2.5 + 50 * i, 10+ 50 * j,-25);
+            makeWall(50.6, 0.6, 50.6, 2.5 + 50 * i, 10+ 50 * j,425);
+        }
+    }
+
+    scene.add(ClassRoom);
 }

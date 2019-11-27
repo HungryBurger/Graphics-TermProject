@@ -7,7 +7,7 @@ function include(FileDir) {
 }
 include("JHJ.js");
 include("JDJ.js");
-include("JSW.js");
+include("JSW1.js");
 include("LSJ.js");
 //위에부분은 참초하는거니까 건드리지마 ㅇㅋ?
 
@@ -30,6 +30,7 @@ window.onload = function init() {
    
    drawDesk(scene);
    drawChair(scene);
+   drawClassRoom(scene);
 
    
    //Let's make a cube
@@ -50,6 +51,7 @@ window.onload = function init() {
 
    var whiteboard=makeWhiteboard(scene);
    var lectureDesk=makeLectureDesk(scene);
+   var roundedBox=createProjectorBody0(scene);
    var spotLight1 = new THREE.SpotLight(0xFFFFFF);
    spotLight1.position.set(0, 30, 50);
    spotLight1.castShadow = true;
@@ -66,9 +68,9 @@ window.onload = function init() {
    controls = new THREE.OrbitControls(camera, renderer.domElement);
    controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
    controls.zoomSpeed = 1.2; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
-   controls.panSpeed = 0.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
+   controls.panSpeed = 10.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
    controls.minDistance = 5; // 마우스 휠로 카메라 거리 조작시 최소 값. 기본값(Float)은 0 입니다.
-   controls.maxDistance = 100; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다
+   controls.maxDistance = 1000; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다
 
    var renderScene = new function renderScene() {
       requestAnimationFrame(renderScene);
