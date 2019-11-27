@@ -1,73 +1,73 @@
 // 테이블
-function makeBoard(Desk) {
+function makeBoard(Desk, scale_z) {
     var cubeGeometry = new THREE.BoxGeometry(15.6, 0.6, 42.6);
     var texture = new THREE.TextureLoader().load('table.jpg');
     texture.rotation = Math.PI / 360 * 180;
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    //cube.castShadow = true;
     cube.position.x = 2.5;
     cube.position.y = 10.5;
     cube.position.z = 0;
+    cube.scale.z = scale_z;
     Desk.add(cube)
 }
 
 // 테이블 바로 밑 덧붙임 판
-function deskFrame1(Desk) {
+function deskFrame1(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(7, 0.6, 42);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.y = 9.9
-
+    mesh.scale.z = scale_z;
     Desk.add(mesh);
 }
 
 // 받침대
-function deskFrame2(Desk) {
+function deskFrame2(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(10, 0.2, 32.5);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = 2.5;
     mesh.position.y = 5.5;
-
+    mesh.scale.z = scale_z;
     Desk.add(mesh);
 }
 
 // 다리쪽 가림막
-function deskFrame3(Desk) {
+function deskFrame3(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(7, 0.2, 36);
     var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
     mesh.rotateZ(Math.PI / 360 * 125.5);
     mesh.position.x = -4;
     mesh.position.y = 4.5;
-
+    mesh.scale.z = scale_z;
     Desk.add(mesh);
 }
 
 // 다리쪽 가림막 지지대
-function frameHolder1(Desk) {
+function frameHolder1(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
     cylinder.position.x = -3.7;
     cylinder.position.y = 2;
-    cylinder.position.z = 17.5;
+    cylinder.position.z = 17.5 * deskSize;
     cylinder.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder);
 }
-function frameHolder2(Desk) {
+function frameHolder2(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
     cylinder.position.x = -3.7;
     cylinder.position.y = 2;
-    cylinder.position.z = -17.5;
+    cylinder.position.z = -17.5 * deskSize;
     cylinder.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder);
 }
 
-function makeLeg1(Desk) {
+function makeLeg1(Desk, deskSize) {
     var legPoints = [
         new THREE.Vector3(0, 10, 19.5),
         new THREE.Vector3(-4, 0, 19.5),
@@ -75,6 +75,9 @@ function makeLeg1(Desk) {
         new THREE.Vector3(7, -10, 19.5),
         new THREE.Vector3(7, -12, 19.5)
     ];
+    for(i=0; i<legPoints.length; i++) {
+        legPoints[i].z = legPoints[i].z * deskSize;
+    }
 
     var legSpline = new THREE.CatmullRomCurve3(legPoints);
 
@@ -95,13 +98,17 @@ function makeLeg1(Desk) {
     var mesh = new THREE.Mesh(geometry, material2);
     Desk.add(mesh);
 }
-function makeLeg2(Desk) {
+
+function makeLeg2(Desk, deskSize) {
     var legPoints = [
         new THREE.Vector3(0, 10, 17.5),
         new THREE.Vector3(-4, 0, 17.5),
         new THREE.Vector3(-4.5, -10, 17.5),
         new THREE.Vector3(-4.5, -12, 17.5)
     ];
+    for(i=0; i<legPoints.length; i++) {
+        legPoints[i].z = legPoints[i].z * deskSize;
+    }
 
     var legSpline = new THREE.CatmullRomCurve3(legPoints);
 
@@ -123,13 +130,13 @@ function makeLeg2(Desk) {
     Desk.add(mesh);
 }
 
-function legFrame(Desk) {
+function legFrame(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
     cylinder.position.x = -1.05;
     cylinder.position.y = 7.5;
-    cylinder.position.z = 19.5;
+    cylinder.position.z = 19.5 * deskSize;
     cylinder.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder);
 
@@ -138,12 +145,12 @@ function legFrame(Desk) {
     var cylinder2 = new THREE.Mesh(geometry2, material2);
     cylinder2.position.x = -1.05;
     cylinder2.position.y = 7.5;
-    cylinder2.position.z = 17.5;
+    cylinder2.position.z = 17.5 * deskSize;
     cylinder2.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder2);
 }
 
-function makeLeg1_2(Desk) {
+function makeLeg1_2(Desk, deskSize) {
     var legPoints = [
         new THREE.Vector3(0, 10, -19.5),
         new THREE.Vector3(-4, 0, -19.5),
@@ -151,6 +158,9 @@ function makeLeg1_2(Desk) {
         new THREE.Vector3(7, -10, -19.5),
         new THREE.Vector3(7, -12, -19.5)
     ];
+    for(i=0; i<legPoints.length; i++) {
+        legPoints[i].z = legPoints[i].z * deskSize;
+    }
 
     var legSpline = new THREE.CatmullRomCurve3(legPoints);
 
@@ -171,13 +181,16 @@ function makeLeg1_2(Desk) {
     var mesh = new THREE.Mesh(geometry, material2);
     Desk.add(mesh);
 }
-function makeLeg2_2(Desk) {
+function makeLeg2_2(Desk, deskSize) {
     var legPoints = [
         new THREE.Vector3(0, 10, -17.5),
         new THREE.Vector3(-4, 0, -17.5),
         new THREE.Vector3(-4.5, -10, -17.5),
         new THREE.Vector3(-4.5, -12, -17.5)
     ];
+    for(i=0; i<legPoints.length; i++) {
+        legPoints[i].z = legPoints[i].z * deskSize;
+    }
 
     var legSpline = new THREE.CatmullRomCurve3(legPoints);
 
@@ -199,13 +212,13 @@ function makeLeg2_2(Desk) {
     Desk.add(mesh);
 }
 
-function legFrame2(Desk) {
+function legFrame2(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
     cylinder.position.x = -1.05;
     cylinder.position.y = 7.5;
-    cylinder.position.z = -19.5;
+    cylinder.position.z = -19.5 * deskSize;
     cylinder.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder);
 
@@ -214,7 +227,7 @@ function legFrame2(Desk) {
     var cylinder2 = new THREE.Mesh(geometry2, material2);
     cylinder2.position.x = -1.05;
     cylinder2.position.y = 7.5;
-    cylinder2.position.z = -17.5;
+    cylinder2.position.z = -17.5 * deskSize;
     cylinder2.rotateZ(-Math.PI / 360 * 54.5);
     Desk.add(cylinder2);
 }
@@ -279,31 +292,57 @@ function wheel(Desk, x, y, z) {
     Desk.add(group);
 }
 
-
-function drawDesk(scene, x, y, z) {
+function two_drawDesk(scene, x, y, z) {
     var Desk = new THREE.Group();
-
-    this.makeBoard(Desk);
-    this.makeLeg1(Desk);
-    this.makeLeg2(Desk);
-    this.legFrame(Desk);
-    this.makeLeg1_2(Desk);
-    this.makeLeg2_2(Desk);
-    this.legFrame2(Desk);
-    this.wheel(Desk, 7, -12, 19.5)
-    this.wheel(Desk, -4.5, -12, 17.5)
-    this.wheel(Desk, 7, -12, -19.5)
-    this.wheel(Desk, -4.5, -12, -17.5)
-    this.deskFrame1(Desk);
-    this.deskFrame2(Desk);
-    this.deskFrame3(Desk);
-    this.frameHolder1(Desk);
-    this.frameHolder2(Desk);
+    var deskSize = 1;
+    this.makeBoard(Desk, 1);
+    this.makeLeg1(Desk, 1);
+    this.makeLeg2(Desk, 1);
+    this.legFrame(Desk, 1);
+    this.makeLeg1_2(Desk, 1);
+    this.makeLeg2_2(Desk, 1);
+    this.legFrame2(Desk, 1);
+    this.wheel(Desk, 7, -12, 19.5 * deskSize)
+    this.wheel(Desk, -4.5, -12, 17.5 * deskSize)
+    this.wheel(Desk, 7, -12, -19.5 * deskSize)
+    this.wheel(Desk, -4.5, -12, -17.5 * deskSize)
+    this.deskFrame1(Desk, 1);
+    this.deskFrame2(Desk, 1);
+    this.deskFrame3(Desk, 1);
+    this.frameHolder1(Desk, 1);
+    this.frameHolder2(Desk, 1);
 
     Desk.position.x = x;
     Desk.position.y = y;
     Desk.position.z = z;
 
+    scene.add(Desk);
+}
+
+function three_drawDesk(scene, x, y, z) {
+    var Desk = new THREE.Group();
+    var deskSize = 1.5;
+    this.makeBoard(Desk, 1.5);
+    this.makeLeg1(Desk, 1.5);
+    this.makeLeg2(Desk, 1.5);
+    this.legFrame(Desk, 1.5);
+    this.makeLeg1_2(Desk, 1.5);
+    this.makeLeg2_2(Desk, 1.5);
+    this.legFrame2(Desk, 1.5);
+    this.wheel(Desk, 7, -12, 19.5 * deskSize)
+    this.wheel(Desk, -4.5, -12, 17.5 * deskSize)
+    this.wheel(Desk, 7, -12, -19.5 * deskSize)
+    this.wheel(Desk, -4.5, -12, -17.5 * deskSize)
+    this.deskFrame1(Desk, 1.5);
+    this.deskFrame2(Desk, 1.5);
+    this.deskFrame3(Desk, 1.5);
+    this.frameHolder1(Desk, 1.5);
+    this.frameHolder2(Desk, 1.5);
+
+    Desk.position.x = x;
+    Desk.position.y = y;
+    Desk.position.z = z;
+    
     scene.add(Desk);
 }
 
@@ -669,7 +708,14 @@ function drawChair(scene, x, y, z) {
 }
 
 function two_person_set(scene, x, y, z) {
-    drawDesk(scene, x, y, z);
+    two_drawDesk(scene, x, y, z);
     drawChair(scene, x, y, z+10);
     drawChair(scene, x, y, z-10);
+}
+
+function three_person_set(scene, x, y, z){
+    three_drawDesk(scene, x, y, z);
+    drawChair(scene, x, y, z);
+    drawChair(scene, x, y, z+18);
+    drawChair(scene, x, y, z-18);
 }

@@ -15,7 +15,7 @@ include("JSW1.js");
 window.onload = function init() {
    var scene = new THREE.Scene();
    var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
-   var renderer = new THREE.WebGLRenderer({ antialias: true });
+   var renderer = new THREE.WebGLRenderer();
 
    //For bouncing balls;
    var step = 0;
@@ -29,8 +29,12 @@ window.onload = function init() {
    //정적인 object할때는 return 할 필요없어
    //makePlane(scene);
 
-   this.two_person_set(scene, 0, 0, 0)
-   this.two_person_set(scene, 40, 0, 0)
+   for (i=0; i<1; i++){
+      this.two_person_set(scene, 40*i, 0, 0);
+      this.three_person_set(scene, 40*i, 0, 70);
+      this.three_person_set(scene, 40*i, 0, -70);
+   }
+
 
    //drawClassRoom(scene);
 
