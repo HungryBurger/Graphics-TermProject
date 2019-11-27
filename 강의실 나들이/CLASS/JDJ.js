@@ -9,7 +9,7 @@ function makeWhiteboard(scene)
     whiteboard.castShadow = true;
     whiteboard.position.x = 0;
     whiteboard.position.y = 0;
-    whiteboard.position.z = -15;
+    whiteboard.position.z = -20;
     scene.add(whiteboard);
     makeSideBoardframe(scene,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
     makeUpdownBoardframe(scene,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
@@ -118,7 +118,7 @@ function makeLectureDesk(scene)
     lectureDesk.castShadow = true;
     lectureDesk.position.x = -20;
     lectureDesk.position.y = -5.5;
-    lectureDesk.position.z = 0;
+    lectureDesk.position.z = -5;
     scene.add(lectureDesk);
 
     var box1Geometry = new THREE.BoxGeometry(xlen, 1.5, 1.875); //7:2:0.2
@@ -351,7 +351,7 @@ function makeLectureDesk(scene)
     cylinder2.position.y=cylinder1.position.y;
     cylinder2.position.z=cylinder1.position.z+0.6;
     scene.add( cylinder2 );
-
+    makeMic(scene,lectureDesk.position.x,lectureDesk.position.y,lectureDesk.position.z);
     lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
     lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
     lectureDeskWheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
@@ -417,4 +417,60 @@ function lectureDeskWheel(scene, x, y, z) {
     group.scale.set(0.2, 0.2, 0.2);
 
     scene.add(group);
+}
+
+// 의자 앞다리
+function makeMic(scene, x, y, z) {
+    var micPoints = [
+        new THREE.Vector3(-7.5/2+0.125, 5, -0.75),
+        new THREE.Vector3(-7.5/2+0.125, 7.5, -0.75),
+        new THREE.Vector3(0, 6.5, -3),
+        new THREE.Vector3(0, 7.5, -3),
+    ];
+
+    var micSpline = new THREE.CatmullRomCurve3(micPoints);
+
+    var extrudeSettings = {
+        steps: 400,
+        bevelEnabled: false,
+        extrudePath: micSpline
+    };
+    var pts = [], numPts = 100;
+    for (var i = 0; i < numPts * 2; i++) {
+        var l = 0.05;
+        var a = i / numPts * Math.PI;
+        pts.push(new THREE.Vector2(Math.cos(a) * l, Math.sin(a) * l));
+    }
+    var shape = new THREE.Shape(pts);
+    var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
+    var material = new THREE.MeshPhongMaterial({ color: 0x000000, metalness: 0.2, roughness: 0 });
+    var mesh = new THREE.Mesh(geometry, material);
+    mesh.position.x = x;
+    mesh.position.y = y;
+    mesh.position.z = z;
+    scene.add(mesh);
+
+    var micBall1Geometry = new THREE.SphereGeometry(0.15,32,32);
+    var micBall1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    var micBall1 = new THREE.Mesh(micBall1Geometry, micBall1Material);
+    micBall1.position.x=mesh.position.x;
+    micBall1.position.y = mesh.position.y+7.5+0.125;
+    micBall1.position.z = mesh.position.z-3;
+    scene.add(micBall1);
+
+    var micCapGeometry=new THREE.CylinderGeometry(0.15,0.125,0.2,32);
+    var micCapMaterial=new THREE.MeshBasicMaterial({color:0x000000});
+    var micCap=new THREE.Mesh(micCapGeometry,micCapMaterial);
+    micCap.position.x=mesh.position.x;
+    micCap.position.y = mesh.position.y+7.5;
+    micCap.position.z = mesh.position.z-3;
+    scene.add(micCap);
+
+    var micBall2Geometry = new THREE.SphereGeometry(0.125,32,32);
+    var micBall2Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    var micBall2 = new THREE.Mesh(micBall2Geometry, micBall2Material);
+    micBall2.position.x=mesh.position.x;
+    micBall2.position.y = mesh.position.y+7.5-0.125;
+    micBall2.position.z = mesh.position.z-3;
+    scene.add(micBall2);
 }
