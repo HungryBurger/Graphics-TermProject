@@ -31,7 +31,7 @@ window.onload = function init() {
    drawDesk(scene);
    drawChair(scene);
    drawClassRoom(scene);
-
+   drawAisle(scene);
    
    //Let's make a cube
    //JHJ.js 파일 확인할 것
@@ -59,9 +59,9 @@ window.onload = function init() {
    spotLight1.shadow.mapSize.height = 5120;
    scene.add(spotLight1);
 
-   camera.position.x = 0;
-   camera.position.y = 30;
-   camera.position.z = 30;
+   camera.position.x = -300;
+   camera.position.y = 300;
+   camera.position.z = -500;
    camera.lookAt(scene.position);
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
   
