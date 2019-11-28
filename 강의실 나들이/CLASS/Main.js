@@ -9,12 +9,13 @@ include("JHJ.js");
 include("JDJ.js");
 include("JSW1.js");
 include("LSJ.js");
+include("JSW1.js");
 //위에부분은 참초하는거니까 건드리지마 ㅇㅋ?
 
 window.onload = function init() {
    var scene = new THREE.Scene();
    var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
-   var renderer = new THREE.WebGLRenderer({ antialias: true });
+   var renderer = new THREE.WebGLRenderer();
 
    //For bouncing balls;
    var step = 0;
@@ -49,9 +50,9 @@ window.onload = function init() {
    spotLight2.shadow.mapSize.height = 5120;
    scene.add(spotLight2);
 
-   var whiteboard=makeWhiteboard(scene);
-   var lectureDesk=makeLectureDesk(scene);
-   var roundedBox=createProjectorBody0(scene);
+   //var whiteboard=makeWhiteboard(scene);
+   //var lectureDesk=makeLectureDesk(scene);
+   //var roundedBox=createProjectorBody0(scene);
    var spotLight1 = new THREE.SpotLight(0xFFFFFF);
    spotLight1.position.set(0, 30, 50);
    spotLight1.castShadow = true;
@@ -64,7 +65,7 @@ window.onload = function init() {
    camera.position.z = -500;
    camera.lookAt(scene.position);
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
-  
+
    controls = new THREE.OrbitControls(camera, renderer.domElement);
    controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
    controls.zoomSpeed = 1.2; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
@@ -77,7 +78,7 @@ window.onload = function init() {
       renderer.render(scene, camera);
       controls.update();
    }
-   
+
 }
 
 
