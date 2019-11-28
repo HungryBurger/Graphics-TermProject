@@ -37,12 +37,12 @@ window.onload = function init() {
    //Let's make a cube
    //JHJ.js 파일 확인할 것
    //요런식으로 쓰면 될듯(애니메이션 쓸거면 이렇게 함수에서 return 시켜서 데려와야댐)
-   var spotLight = new THREE.SpotLight(0xFFFFFF);
-   spotLight.position.set(-30, 30, 0);
-   spotLight.castShadow = true;
-   spotLight.shadow.mapSize.width = 5120;
-   spotLight.shadow.mapSize.height = 5120;
-   scene.add(spotLight);
+   // var spotLight = new THREE.SpotLight(0xFFFFFF);
+   // spotLight.position.set(-30, 30, 0);
+   // spotLight.castShadow = true;
+   // spotLight.shadow.mapSize.width = 5120;
+   // spotLight.shadow.mapSize.height = 5120;
+   // scene.add(spotLight);
    var spotLight2 = new THREE.SpotLight(0xFFFFFF);
    spotLight2.position.set(30, 30, 0);
    spotLight2.castShadow = true;
