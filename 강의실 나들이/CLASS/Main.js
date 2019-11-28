@@ -51,7 +51,8 @@ window.onload = function init() {
 
    var whiteboard=makeWhiteboard(scene);
    var lectureDesk=makeLectureDesk(scene);
-   var roundedBox=createProjectorBody0(scene);
+   createProjectorBody0(scene, 0, 10, 0);
+   this.createFluorescentBase0(scene, 0, 15, 0, 0.4);
    var spotLight1 = new THREE.SpotLight(0xFFFFFF);
    spotLight1.position.set(0, 30, 50);
    spotLight1.castShadow = true;
