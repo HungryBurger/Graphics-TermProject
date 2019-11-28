@@ -30,9 +30,12 @@ window.onload = function init() {
    //makePlane(scene);
    
    drawClassRoom(scene);
-   drawAisle(scene);
-   makeWhiteboard(scene, 210, 100, 200, 10.5);
-   makeLectureDesk(scene);
+   //drawAisle(scene);
+   makeWhiteboard(scene, 170, 110, 200, 9.5);
+   makeLectureDesk(scene, 200, 75, 200);
+   two_person_set(scene, 200, 50, 200);
+   this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 10, 80, 185, 110);
+   this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 10, 80, 185, 310); 
    
    //Let's make a cube
    //JHJ.js 파일 확인할 것

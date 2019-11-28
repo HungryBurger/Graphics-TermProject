@@ -216,18 +216,17 @@ function createCable(scene, _x_, _y_, _z_, r, c) {
 
 //-----------------------------------------------------------------------------------
 
-function createFluorescentBase0(scene, a, b, c, intensity) {
-
+function createFluorescentBase0(scene, a, b, c, intensity, scale, p_x, p_y, p_z) {
+	var fluorescent = new THREE.Group();
     var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 80));
-    spotLight.position.set(a, b, c);
+    spotLight.position.set(a + p_x, b + p_y, c + p_z);
     spotLight.castShadow = true;
-	spotLight.target.position.set(a, 0, c);
-	spotLight.shadow.mapSize.width = 512;
-    spotLight.shadow.mapSize.height = 512;
+	spotLight.target.position.set(a + p_x, 0, c + p_z);
+	spotLight.shadow.mapSize.width = 5120;
+	spotLight.shadow.mapSize.height = 5120;
     scene.add(spotLight.target);
 	scene.add(spotLight);
-
-	var fluorescent = new THREE.Group();
+	
 	var geometry = new THREE.BoxGeometry( 0.1, 7, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0xBDBDBD } );
 	material.castShadow= true;
@@ -253,7 +252,11 @@ function createFluorescentBase0(scene, a, b, c, intensity) {
 	createFluorescentLampBase2(fluorescent, x_, y_, z_);
 	createFluorescentLampBase3(fluorescent, x_, y_, z_);
 	
-	fluorescent.position.y = -8;
+	fluorescent.rotateY(Math.PI / 180 * 90);
+	fluorescent.scale.set(scale, scale, scale);
+	fluorescent.position.set(p_x, p_y, p_z)
+	console.log(spotLight.position);
+	console.log(fluorescent.position);
 	scene.add(fluorescent);
 }
 
