@@ -351,6 +351,7 @@ function makeLectureDesk(scene)
     cylinder2.position.y=cylinder1.position.y;
     cylinder2.position.z=cylinder1.position.z+0.6;
     scene.add( cylinder2 );
+    
     makeMic(scene,lectureDesk.position.x,lectureDesk.position.y,lectureDesk.position.z);
     lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
     lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
