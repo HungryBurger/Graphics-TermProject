@@ -9,12 +9,13 @@ include("JHJ.js");
 include("JDJ.js");
 include("JSW1.js");
 include("LSJ.js");
+include("JSW1.js");
 //위에부분은 참초하는거니까 건드리지마 ㅇㅋ?
 
 window.onload = function init() {
    var scene = new THREE.Scene();
    var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
-   var renderer = new THREE.WebGLRenderer({ antialias: true });
+   var renderer = new THREE.WebGLRenderer();
 
    //For bouncing balls;
    var step = 0;
@@ -28,20 +29,20 @@ window.onload = function init() {
    //정적인 object할때는 return 할 필요없어
    //makePlane(scene);
    
-   drawDesk(scene);
-   drawChair(scene);
    drawClassRoom(scene);
-
+   drawAisle(scene);
+   makeWhiteboard(scene, 210, 100, 200, 10.5);
+   makeLectureDesk(scene);
    
    //Let's make a cube
    //JHJ.js 파일 확인할 것
    //요런식으로 쓰면 될듯(애니메이션 쓸거면 이렇게 함수에서 return 시켜서 데려와야댐)
-   var spotLight = new THREE.SpotLight(0xFFFFFF);
-   spotLight.position.set(-30, 30, 0);
-   spotLight.castShadow = true;
-   spotLight.shadow.mapSize.width = 5120;
-   spotLight.shadow.mapSize.height = 5120;
-   scene.add(spotLight);
+   // var spotLight = new THREE.SpotLight(0xFFFFFF);
+   // spotLight.position.set(-30, 30, 0);
+   // spotLight.castShadow = true;
+   // spotLight.shadow.mapSize.width = 5120;
+   // spotLight.shadow.mapSize.height = 5120;
+   // scene.add(spotLight);
    var spotLight2 = new THREE.SpotLight(0xFFFFFF);
    spotLight2.position.set(30, 30, 0);
    spotLight2.castShadow = true;
@@ -53,6 +54,9 @@ window.onload = function init() {
    var lectureDesk=makeLectureDesk(scene);
    createProjectorBody0(scene, 0, 10, 0);
    this.createFluorescentBase0(scene, 0, 15, 0, 0.4);
+   //var whiteboard=makeWhiteboard(scene);
+   //var lectureDesk=makeLectureDesk(scene);
+   //var roundedBox=createProjectorBody0(scene);
    var spotLight1 = new THREE.SpotLight(0xFFFFFF);
    spotLight1.position.set(0, 30, 50);
    spotLight1.castShadow = true;
@@ -60,12 +64,12 @@ window.onload = function init() {
    spotLight1.shadow.mapSize.height = 5120;
    scene.add(spotLight1);
 
-   camera.position.x = 0;
-   camera.position.y = 30;
-   camera.position.z = 30;
+   camera.position.x = -300;
+   camera.position.y = 300;
+   camera.position.z = -500;
    camera.lookAt(scene.position);
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
-  
+
    controls = new THREE.OrbitControls(camera, renderer.domElement);
    controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
    controls.zoomSpeed = 1.2; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
@@ -78,7 +82,7 @@ window.onload = function init() {
       renderer.render(scene, camera);
       controls.update();
    }
-   
+
 }
 
 
