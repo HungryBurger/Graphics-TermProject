@@ -29,10 +29,10 @@ window.onload = function init() {
    //정적인 object할때는 return 할 필요없어
    //makePlane(scene);
    
-   drawDesk(scene);
-   drawChair(scene);
    drawClassRoom(scene);
    drawAisle(scene);
+   makeWhiteboard(scene, 210, 100, 200, 10.5);
+   makeLectureDesk(scene);
    
    //Let's make a cube
    //JHJ.js 파일 확인할 것

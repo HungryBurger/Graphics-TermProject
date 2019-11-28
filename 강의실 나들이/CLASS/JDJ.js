@@ -1,6 +1,7 @@
 // Make Whiteboard
-function makeWhiteboard(scene)
+function makeWhiteboard(scene, x, y, z, scale)
 {
+    var createWhiteBoard = new THREE.Group();
     var xlen=35, ylen=10, zlen=0.125;
     var whiteboardGeometry = new THREE.BoxGeometry(xlen, ylen, zlen); //7:2:0.2
     var whiteboardMeterial = new THREE.MeshPhongMaterial({ color: 0xffffff});
@@ -10,10 +11,10 @@ function makeWhiteboard(scene)
     whiteboard.position.x = 0;
     whiteboard.position.y = 0;
     whiteboard.position.z = -20;
-    scene.add(whiteboard);
-    makeSideBoardframe(scene,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
-    makeUpdownBoardframe(scene,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
-    makeEdge(scene,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
+    createWhiteBoard.add(whiteboard);
+    makeSideBoardframe(createWhiteBoard,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
+    makeUpdownBoardframe(createWhiteBoard,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
+    makeEdge(createWhiteBoard,xlen,ylen,zlen,whiteboard.position.x,whiteboard.position.y,whiteboard.position.z);
    
     var plane=new THREE.PlaneGeometry(ylen,xlen,0,xlen*2);
     for(let i=0; i<plane.vertices.length/2; i++) {
@@ -27,11 +28,14 @@ function makeWhiteboard(scene)
     mesh.position.y=whiteboard.position.y;
     mesh.position.z=whiteboard.position.z;
     
-    scene.add(mesh);
-    return whiteboard;
+    createWhiteBoard.add(mesh);
+    createWhiteBoard.rotateY(Math.PI/180 * 90);
+    createWhiteBoard.scale.set(scale, scale, scale);
+    createWhiteBoard.position.set(x, y, z);
+    scene.add(createWhiteBoard);
 }
 
-function makeSideBoardframe(scene,x,y,z,xPos,yPos,zPos)
+function makeSideBoardframe(createWhiteBoard,x,y,z,xPos,yPos,zPos)
 {
     var xlen=0.5,ylen=y,zlen=2.5;
     var boardframeGeometry = new THREE.BoxGeometry(xlen,ylen,zlen);
@@ -45,11 +49,11 @@ function makeSideBoardframe(scene,x,y,z,xPos,yPos,zPos)
     boardframe2.position.x= xPos-x/2-xlen/2;
     boardframe2.position.y = yPos;
     boardframe2.position.z = zPos-(z-zlen)/2;
-    scene.add(boardframe1);
-    scene.add(boardframe2);
+    createWhiteBoard.add(boardframe1);
+    createWhiteBoard.add(boardframe2);
 }
 
-function makeUpdownBoardframe(scene,x,y,z,xPos,yPos,zPos)
+function makeUpdownBoardframe(createWhiteBoard,x,y,z,xPos,yPos,zPos)
 {
     var xlen=x,ylen=0.5,zlen=2.5;
     var boardframeGeometry = new THREE.BoxGeometry(xlen,ylen,zlen);
@@ -63,11 +67,11 @@ function makeUpdownBoardframe(scene,x,y,z,xPos,yPos,zPos)
     boardframe2.position.x= xPos;
     boardframe2.position.y = yPos-y/2-ylen/2;
     boardframe2.position.z = zPos-(z-zlen)/2;
-    scene.add(boardframe1);
-    scene.add(boardframe2);
+    createWhiteBoard.add(boardframe1);
+    createWhiteBoard.add(boardframe2);
 }
 
-function makeEdge(scene,x,y,z,xPos,yPos,zPos)
+function makeEdge(createWhiteBoard,x,y,z,xPos,yPos,zPos)
 {
     var radius=0.5;
     var geometry1 = new THREE.CylinderGeometry( radius,radius,2.5,32,1,false,0,Math.PI/2 );
@@ -77,7 +81,7 @@ function makeEdge(scene,x,y,z,xPos,yPos,zPos)
     cylinder1.position.x=xPos+x/2;
     cylinder1.position.y=yPos-y/2;
     cylinder1.position.z=zPos+9.5*z;
-    scene.add( cylinder1 );
+    createWhiteBoard.add( cylinder1 );
 
     var geometry2 = new THREE.CylinderGeometry( radius,radius,2.5,32,1,false,Math.PI/2,Math.PI/2 );
     var material2 = new THREE.MeshPhongMaterial( {color: 0x715a38} );
@@ -86,7 +90,7 @@ function makeEdge(scene,x,y,z,xPos,yPos,zPos)
     cylinder2.position.x=xPos+x/2;
     cylinder2.position.y=yPos+y/2;
     cylinder2.position.z=zPos+9.5*z;
-    scene.add( cylinder2 );
+    createWhiteBoard.add( cylinder2 );
 
     var geometry3 = new THREE.CylinderGeometry( radius,radius,2.5,32,1,false,Math.PI,Math.PI/2 );
     var material3 = new THREE.MeshPhongMaterial( {color: 0x715a38} );
@@ -95,7 +99,7 @@ function makeEdge(scene,x,y,z,xPos,yPos,zPos)
     cylinder3.position.x=xPos-x/2;
     cylinder3.position.y=yPos+y/2;
     cylinder3.position.z=zPos+9.5*z;
-    scene.add( cylinder3 );
+    createWhiteBoard.add( cylinder3 );
 
     var geometry4 = new THREE.CylinderGeometry( radius,radius,2.5,32,1,false,1.5*Math.PI,Math.PI/2 );
     var material4 = new THREE.MeshPhongMaterial( {color: 0x715a38} );
@@ -104,12 +108,13 @@ function makeEdge(scene,x,y,z,xPos,yPos,zPos)
     cylinder4.position.x=xPos-x/2;
     cylinder4.position.y=yPos-y/2;
     cylinder4.position.z=zPos+9.5*z;
-    scene.add( cylinder4 );
+    createWhiteBoard.add( cylinder4 );
 }
 
 // Make Lecture Desk
-function makeLectureDesk(scene)
+function makeLectureDesk(scene, x, y, z)
 {
+    var createLectureDesk = new THREE.Group();
     var xlen=7.5, ylen=7.5, zlen=6;
     var lectureDeskGeometry = new THREE.BoxGeometry(xlen, ylen, zlen); //7:2:0.2
     var lectureDeskMeterial = new THREE.MeshPhongMaterial({ color: 0xb0b2b2});
@@ -119,7 +124,7 @@ function makeLectureDesk(scene)
     lectureDesk.position.x = -20;
     lectureDesk.position.y = -5.5;
     lectureDesk.position.z = -5;
-    scene.add(lectureDesk);
+    createLectureDesk.add(lectureDesk);
 
     var box1Geometry = new THREE.BoxGeometry(xlen, 1.5, 1.875); //7:2:0.2
     var box1Material = new THREE.MeshPhongMaterial({ color: 0xb0b2b2});
@@ -127,7 +132,7 @@ function makeLectureDesk(scene)
     box1.position.x=lectureDesk.position.x;
     box1.position.y=lectureDesk.position.y+ylen/2+1.5/2;
     box1.position.z=lectureDesk.position.z+zlen/2-1.875/2;
-    scene.add(box1);
+    createLectureDesk.add(box1);
 
     // Quarter cylinder of Lecture desk
     var cylinder1Geometry=new THREE.CylinderGeometry(1.875,1.875,7.5,32,1,false,0,Math.PI/2 );
@@ -138,7 +143,7 @@ function makeLectureDesk(scene)
     cylinder1.position.y=box1.position.y+1.5/2;
     cylinder1.position.z=box1.position.z-1.875/2;
     cylinder1.openEnded=false;
-    scene.add( cylinder1 );
+    createLectureDesk.add( cylinder1 );
 
     var monitorGeometry= new THREE.BoxGeometry(7, 0.25, 4); //7:2:0.2
     var monitorMaterial=new THREE.MeshPhongMaterial({color:0x000000});
@@ -146,7 +151,7 @@ function makeLectureDesk(scene)
     monitor.position.x=lectureDesk.position.x;
     monitor.position.y=cylinder1.position.y+1.875/2;
     monitor.position.z=lectureDesk.position.z-1.875;
-    scene.add(monitor);
+    createLectureDesk.add(monitor);
 
     // Side1 of Lecture Desk
     var box2Geometry= new THREE.BoxGeometry(0.25,6.5,6);
@@ -156,7 +161,7 @@ function makeLectureDesk(scene)
     box2.position.y=lectureDesk.position.y+2;
     box2.position.z=lectureDesk.position.z-0.8;
     box2.rotation.x=-Math.PI/180*15;
-    scene.add(box2);
+    createLectureDesk.add(box2);
 
     var box3Geometry= new THREE.BoxGeometry(0.25,6.5,6);
     var box3Material=new THREE.MeshPhongMaterial({color:0xb0b2b2});
@@ -165,7 +170,7 @@ function makeLectureDesk(scene)
     box3.position.y=lectureDesk.position.y+2;
     box3.position.z=lectureDesk.position.z-0.8;
     box3.rotation.x=-Math.PI/180*15;
-    scene.add(box3);
+    createLectureDesk.add(box3);
 
     // Side2 of Lecture Desk
     var box4Geometry= new THREE.BoxGeometry(0.25,2,4);
@@ -175,7 +180,7 @@ function makeLectureDesk(scene)
     box4.position.y=lectureDesk.position.y-1.5;
     box4.position.z=lectureDesk.position.z-2;
     box4.rotation.x=-Math.PI/180*70;
-    scene.add(box4);
+    createLectureDesk.add(box4);
     
     var box5Geometry= new THREE.BoxGeometry(0.25,2,4);
     var box5Material=new THREE.MeshPhongMaterial({color:0xb0b2b2});
@@ -184,7 +189,7 @@ function makeLectureDesk(scene)
     box5.position.y=lectureDesk.position.y-1.5;
     box5.position.z=lectureDesk.position.z-2;
     box5.rotation.x=-Math.PI/180*70;
-    scene.add(box5);
+    createLectureDesk.add(box5);
 
     //control board
     var boardGeometry= new THREE.BoxGeometry(xlen,1.2,1.5);
@@ -194,7 +199,7 @@ function makeLectureDesk(scene)
     board.position.y=lectureDesk.position.y+3.78;
     board.position.z=lectureDesk.position.z-4.4;
     board.rotation.x=-Math.PI/180*15;
-    scene.add(board);
+    createLectureDesk.add(board);
 
     //slide
     var slideGeometry= new THREE.BoxGeometry(xlen,0.25,7);
@@ -204,7 +209,7 @@ function makeLectureDesk(scene)
     slide.position.y=board.position.y+1.875+1.2/2;
     slide.position.z=board.position.z+2;
     slide.rotation.x=-Math.PI/180*15;
-    scene.add(slide);
+    createLectureDesk.add(slide);
 
     //slide beam
     var box8Geometry= new THREE.BoxGeometry(xlen,1.5,0.25);
@@ -213,7 +218,7 @@ function makeLectureDesk(scene)
     box8.position.x=slide.position.x;
     box8.position.y=slide.position.y+0.25/2;
     box8.position.z=cylinder1.position.z-0.33;
-    scene.add(box8);
+    createLectureDesk.add(box8);
 
     var box9Geometry= new THREE.BoxGeometry(xlen,1.5,0.25);
     var box9Material=new THREE.MeshPhongMaterial({color:0xb0b2b2});
@@ -221,7 +226,7 @@ function makeLectureDesk(scene)
     box9.position.x=slide.position.x;
     box9.position.y=slide.position.y-1.5+0.25*2;
     box9.position.z=board.position.z+1.5/2;
-    scene.add(box9);
+    createLectureDesk.add(box9);
 
     //slide handle
     var box10Geometry= new THREE.BoxGeometry(xlen/2,0.05,0.05);
@@ -230,7 +235,7 @@ function makeLectureDesk(scene)
     box10.position.x=slide.position.x;
     box10.position.y=slide.position.y-0.25*1.75;
     box10.position.z=slide.position.z-7*1/3;
-    scene.add(box10);
+    createLectureDesk.add(box10);
 
     var box11Geometry= new THREE.BoxGeometry(0.05,0.05,0.05);
     var box11Material=new THREE.MeshPhongMaterial({color:0x000000});
@@ -238,7 +243,7 @@ function makeLectureDesk(scene)
     box11.position.x=box10.position.x-xlen/4+0.05/2;
     box11.position.y=box10.position.y-0.05;
     box11.position.z=box10.position.z;
-    scene.add(box11);
+    createLectureDesk.add(box11);
 
     var box12Geometry= new THREE.BoxGeometry(0.05,0.05,0.05);
     var box12Material=new THREE.MeshPhongMaterial({color:0x000000});
@@ -246,7 +251,7 @@ function makeLectureDesk(scene)
     box12.position.x=box10.position.x+xlen/4-0.05/2;
     box12.position.y=box10.position.y-0.05;
     box12.position.z=box10.position.z;
-    scene.add(box12);
+    createLectureDesk.add(box12);
 
     //control screen
     var monitor2Geometry= new THREE.BoxGeometry(1.6, 0.025, 1.2); //7:2:0.2
@@ -256,7 +261,7 @@ function makeLectureDesk(scene)
     monitor2.position.y=board.position.y+1.2/2;
     monitor2.position.z=board.position.z-0.125;
     monitor2.rotation.x=-Math.PI/180*15;
-    scene.add(monitor2);
+    createLectureDesk.add(monitor2);
 
     var screen2Geometry= new THREE.BoxGeometry(1.3, 0.025, 1.0); //7:2:0.2
     var screen2Material=new THREE.MeshPhongMaterial({color:0xffffff,emissive:0xffffff});
@@ -265,7 +270,7 @@ function makeLectureDesk(scene)
     screen2.position.y=monitor2.position.y+0.025/2;
     screen2.position.z=monitor2.position.z;
     screen2.rotation.x=-Math.PI/180*15;
-    scene.add(screen2);
+    createLectureDesk.add(screen2);
     
     // Below of Lecture Desk
     var box6Geometry= new THREE.BoxGeometry(0.25,0.75,6.6);
@@ -274,7 +279,7 @@ function makeLectureDesk(scene)
     box6.position.x=lectureDesk.position.x-7.5/2+0.25/2;
     box6.position.y=lectureDesk.position.y-7.5/2+0.75/2;
     box6.position.z=lectureDesk.position.z-0.32;
-    scene.add(box6);
+    createLectureDesk.add(box6);
 
     var box7Geometry= new THREE.BoxGeometry(0.25,0.75,6.6);
     var box7Material=new THREE.MeshPhongMaterial({color:0xb0b2b2});
@@ -282,7 +287,7 @@ function makeLectureDesk(scene)
     box7.position.x=lectureDesk.position.x+7.5/2-0.25/2;
     box7.position.y=lectureDesk.position.y-7.5/2+0.75/2;
     box7.position.z=lectureDesk.position.z-0.32;
-    scene.add(box7);
+    createLectureDesk.add(box7);
     
     var monitorBackGeometry= new THREE.BoxGeometry(6, 1, 3); //7:2:0.2
     var monitorBackMaterial=new THREE.MeshPhongMaterial({color:0x000000});
@@ -292,7 +297,7 @@ function makeLectureDesk(scene)
     monitorBack.position.x=lectureDesk.position.x;
     monitorBack.position.y=monitor.position.y-0.5;
     monitorBack.position.z=monitor.position.z+0.25;
-    scene.add(monitorBack);
+    createLectureDesk.add(monitorBack);
 
     // Back of Monitor pillars
     var cylinder3Geometry=new THREE.CylinderGeometry(0.125,0.125,4,32);
@@ -302,7 +307,7 @@ function makeLectureDesk(scene)
     cylinder3.position.x=lectureDesk.position.x-7.5/3;
     cylinder3.position.y=lectureDesk.position.y+3;
     cylinder3.position.z=lectureDesk.position.z+1;
-    scene.add( cylinder3 );
+    createLectureDesk.add( cylinder3 );
 
     var cylinder4Geometry=new THREE.CylinderGeometry(0.125,0.125,4,32);
     var cylinder4Material = new THREE.MeshPhongMaterial( {color: 0x000000} );
@@ -311,7 +316,7 @@ function makeLectureDesk(scene)
     cylinder4.position.x=lectureDesk.position.x+7.5/3;
     cylinder4.position.y=lectureDesk.position.y+3;
     cylinder4.position.z=lectureDesk.position.z+1;
-    scene.add( cylinder4 );
+    createLectureDesk.add( cylinder4 );
 
     var cylinder5Geometry=new THREE.CylinderGeometry(0.08,0.08,7,32);
     var cylinder5Material = new THREE.MeshPhongMaterial( {color: 0x000000} );
@@ -320,7 +325,7 @@ function makeLectureDesk(scene)
     cylinder5.position.x=cylinder3.position.x;
     cylinder5.position.y=cylinder3.position.y;
     cylinder5.position.z=cylinder3.position.z;
-    scene.add( cylinder5 );
+    createLectureDesk.add( cylinder5 );
 
     var cylinder6Geometry=new THREE.CylinderGeometry(0.08,0.08,7,32);
     var cylinder6Material = new THREE.MeshPhongMaterial( {color: 0x000000} );
@@ -329,7 +334,7 @@ function makeLectureDesk(scene)
     cylinder6.position.x=cylinder4.position.x;
     cylinder6.position.y=cylinder4.position.y;
     cylinder6.position.z=cylinder4.position.z;
-    scene.add( cylinder6 );
+    createLectureDesk.add( cylinder6 );
 
     // Monitor Screen
     var screenGeometry=new THREE.BoxGeometry(6.5,0.1,3.5);
@@ -340,7 +345,7 @@ function makeLectureDesk(scene)
     screen.position.y=monitor.position.y+0.125;
     screen.position.z=monitor.position.z;
     
-    scene.add(screen);
+    createLectureDesk.add(screen);
 
     // Cylinder inside frame
     var cylinder2Geometry=new THREE.CylinderGeometry(0.6,0.6,7.55,32);
@@ -350,16 +355,21 @@ function makeLectureDesk(scene)
     cylinder2.position.x=lectureDesk.position.x;
     cylinder2.position.y=cylinder1.position.y;
     cylinder2.position.z=cylinder1.position.z+0.6;
-    scene.add( cylinder2 );
+    createLectureDesk.add( cylinder2 );
     
-    makeMic(scene,lectureDesk.position.x,lectureDesk.position.y,lectureDesk.position.z);
-    lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
-    lectureDeskWheel(scene,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
-    lectureDeskWheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
-    lectureDeskWheel(scene,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
+    makeMic(createLectureDesk,lectureDesk.position.x,lectureDesk.position.y,lectureDesk.position.z);
+    lectureDeskWheel(createLectureDesk,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
+    lectureDeskWheel(createLectureDesk,lectureDesk.position.x-7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
+    lectureDeskWheel(createLectureDesk,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z+6/3);
+    lectureDeskWheel(createLectureDesk,lectureDesk.position.x+7/2,lectureDesk.position.y-7.5/2,lectureDesk.position.z-6/3);
+
+    createLectureDesk.rotateY(Math.PI / 180 * 90);
+    createLectureDesk.position.set(x, y, z);
+    createLectureDesk.scale.set(7, 7, 7);
+    scene.add(createLectureDesk);
 }
 
-function lectureDeskWheel(scene, x, y, z) {
+function lectureDeskWheel(createLectureDesk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.05, 1.05, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
@@ -417,11 +427,11 @@ function lectureDeskWheel(scene, x, y, z) {
     group.add(cylinder7);
     group.scale.set(0.2, 0.2, 0.2);
 
-    scene.add(group);
+    createLectureDesk.add(group);
 }
 
 // 의자 앞다리
-function makeMic(scene, x, y, z) {
+function makeMic(createLectureDesk, x, y, z) {
     var micPoints = [
         new THREE.Vector3(-7.5/2+0.125, 5, -0.75),
         new THREE.Vector3(-7.5/2+0.125, 7.5, -0.75),
@@ -449,7 +459,7 @@ function makeMic(scene, x, y, z) {
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
-    scene.add(mesh);
+    createLectureDesk.add(mesh);
 
     var micBall1Geometry = new THREE.SphereGeometry(0.15,32,32);
     var micBall1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
@@ -457,7 +467,7 @@ function makeMic(scene, x, y, z) {
     micBall1.position.x=mesh.position.x;
     micBall1.position.y = mesh.position.y+7.5+0.125;
     micBall1.position.z = mesh.position.z-3;
-    scene.add(micBall1);
+    createLectureDesk.add(micBall1);
 
     var micCapGeometry=new THREE.CylinderGeometry(0.15,0.125,0.2,32);
     var micCapMaterial=new THREE.MeshBasicMaterial({color:0x000000});
@@ -465,7 +475,7 @@ function makeMic(scene, x, y, z) {
     micCap.position.x=mesh.position.x;
     micCap.position.y = mesh.position.y+7.5;
     micCap.position.z = mesh.position.z-3;
-    scene.add(micCap);
+    createLectureDesk.add(micCap);
 
     var micBall2Geometry = new THREE.SphereGeometry(0.125,32,32);
     var micBall2Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
@@ -473,5 +483,5 @@ function makeMic(scene, x, y, z) {
     micBall2.position.x=mesh.position.x;
     micBall2.position.y = mesh.position.y+7.5-0.125;
     micBall2.position.z = mesh.position.z-3;
-    scene.add(micBall2);
+    createLectureDesk.add(micBall2);
 }
