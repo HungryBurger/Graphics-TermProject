@@ -1,5 +1,5 @@
 var projector = new THREE.Group();
-
+var aaa = new THREE.Group();
 function createProjectorBody0(scene, a, b, c) {
 
 	function createBoxWithRoundedEdges0( width, height, depth, radius0, smoothness ) {
