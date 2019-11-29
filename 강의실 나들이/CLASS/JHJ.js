@@ -3,7 +3,7 @@ var Aisle = new THREE.Group();
 
 function makeGround(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var texture = new THREE.TextureLoader().load('ClassRoom_Ground.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     //cube.castShadow = true;
@@ -25,7 +25,7 @@ function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
 }
 function makeWall1(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var texture = new THREE.TextureLoader().load('ClassRoom_Wall.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.x = -0.5 * Math.PI;
@@ -36,7 +36,7 @@ function makeWall1(x, y, z, pos_x, pos_y, pos_z) {
 }
 function makeWall2(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var texture = new THREE.TextureLoader().load('ClassRoom_Wall.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.z = Math.PI * -0.5;
@@ -48,7 +48,7 @@ function makeWall2(x, y, z, pos_x, pos_y, pos_z) {
 //턱 벽면
 function makeWall3(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var texture = new THREE.TextureLoader().load('Ground.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.z = Math.PI * -0.5;
@@ -60,7 +60,7 @@ function makeWall3(x, y, z, pos_x, pos_y, pos_z) {
 //턱 벽면
 function makeWall4(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('wall2.jpg');
+    var texture = new THREE.TextureLoader().load('Ground.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.x = Math.PI * -0.5;
@@ -72,7 +72,7 @@ function makeWall4(x, y, z, pos_x, pos_y, pos_z) {
 //천장
 function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
+    var texture = new THREE.TextureLoader().load('ClassRoom_Ceiling.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.position.x = pos_x;
@@ -97,19 +97,19 @@ function drawClassRoom(scene) {
     makeWall4(50.6, 0.6, 20.6, 2.5 + 775, -10.5, 0 + 250);
     makeWall4(50.6, 0.6, 20.6, 2.5 + 775, -10.5, 0 + 150);
     
-    
+    //양 옆벽
     for (var i = 0; i < 16; i++) {
-        for (var j = 0; j < 4; j++) {
-            makeWall1(50.6, 0.6, 50.6, 2.5 + 50 * i, 10 + 50 * j, -25);
-            makeWall1(50.6, 0.6, 50.6, 2.5 + 50 * i, 10 + 50 * j, 425);
+        for (var j = 0; j < 2; j++) {
+            makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * i, 35 + 100 * j, -25);
+            makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * i, 35 + 100 * j, 425);
         }
     }
     for (var i = 0; i < 9; i++) {
-        for (var j = 0; j < 4; j++) {
+        for (var j = 0; j < 2; j++) {
 
-            makeWall2(50.6, 0.6, 50.6, 2.5, 10 + 50 * j, -25 + 50 * i);
-            if (!(i == 4 && j == 1) && !(i == 4 && j == 0) && !(i == 5 && j == 1) && !(i == 5 && j == 0))
-                makeWall2(50.6, 0.6, 50.6, 802.5, 10 + 50 * j, -25 + 50 * i);
+            makeWall2(100.6, 0.6, 50.6, 2.5, 35 + 100 * j, -25 + 50 * i);
+            if (!(i == 4 && j == 0) && !(i == 5 && j == 0))
+                makeWall2(100.6, 0.6, 50.6, 802.5, 35 + 100 * j, -25 + 50 * i);
         }
     }
     scene.add(ClassRoom);
@@ -118,7 +118,7 @@ function drawClassRoom(scene) {
 //여기서부터는 통로 제작
 function makeWall7(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('Aisle_ground.jpg');
+    var texture = new THREE.TextureLoader().load('Aisle_wall.png');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.z = Math.PI * -0.5;
@@ -169,7 +169,7 @@ function drawAisle(scene) {
     //입구
     makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,1000,'Aisle_ground.jpg');
     //반대편 입구
-    makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,-50,'Aisle_ground.jpg');
+    makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,-50,'Aisle_Outside.jpg');
 
     scene.add(Aisle);
 }
