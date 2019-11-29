@@ -1,7 +1,6 @@
-var projector = new THREE.Group();
 
-function createProjectorBody0(scene, a, b, c) {
-
+function createProjectorBody0(scene, a, b, c, p_x, p_y, p_z, scale) {
+	var projector = new THREE.Group();
 	function createBoxWithRoundedEdges0( width, height, depth, radius0, smoothness ) {
 	  let shape = new THREE.Shape();
 	  let eps = 0.00001;
@@ -37,34 +36,38 @@ function createProjectorBody0(scene, a, b, c) {
 	 x_ = cube.position.x = a;
 	 y_ = cube.position.y = b;
 	 z_ = cube.position.z = c;
-	 scene.add( cube );
+	 projector.add( cube );
 	
-	 createProjectorBody1(scene, x_, y_, z_);
-	 createProjectorCamera(scene, x_, y_, z_);
-	 createProjectorLeftHanger0(scene, x_ - 0.5, y_, z_);
-	 createProjectorLeftHangerJoint0(scene, x_ - 0.5, y_, z_);
-	 createProjectorLeftHanger1(scene, x_ - 0.5, y_, z_);
-	 createProjectorLeftHangerJoint1(scene, x_ - 0.5, y_, z_);
-	 createProjectorLeftHanger2(scene, x_- 0.5, y_, z_);
-	 createProjectorLeftHangerJoint2(scene, x_ - 0.5, y_, z_);
-	 createProjectorLeftHanger3(scene, x_ - 0.5, y_, z_);
+	 createProjectorBody1(projector, x_, y_, z_);
+	 createProjectorCamera(projector, x_, y_, z_);
+	 createProjectorLeftHanger0(projector, x_ - 0.5, y_, z_);
+	 createProjectorLeftHangerJoint0(projector, x_ - 0.5, y_, z_);
+	 createProjectorLeftHanger1(projector, x_ - 0.5, y_, z_);
+	 createProjectorLeftHangerJoint1(projector, x_ - 0.5, y_, z_);
+	 createProjectorLeftHanger2(projector, x_- 0.5, y_, z_);
+	 createProjectorLeftHangerJoint2(projector, x_ - 0.5, y_, z_);
+	 createProjectorLeftHanger3(projector, x_ - 0.5, y_, z_);
 
-	 createProjectorLeftHanger0(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHangerJoint0(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHanger1(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHangerJoint1(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHanger2(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHangerJoint2(scene, x_ + 0.5, y_, z_);
-	 createProjectorLeftHanger3(scene, x_ + 0.5, y_, z_);
+	 createProjectorLeftHanger0(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHangerJoint0(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHanger1(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHangerJoint1(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHanger2(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHangerJoint2(projector, x_ + 0.5, y_, z_);
+	 createProjectorLeftHanger3(projector, x_ + 0.5, y_, z_);
 
-	 createCable(scene, x_, y_, z_, 0.02, 0x2457B);
-	 createCable(scene, x_, y_, z_ - 0.2, 0.03, 0xED0000);
+	 createCable(projector, x_, y_, z_, 0.02, 0x2457B);
+	 createCable(projector, x_, y_, z_ - 0.2, 0.03, 0xED0000);
+
+	 projector.rotateY(Math.PI / 180 * 90);
+	 projector.position.set(p_x, p_y, p_z);
+	 projector.scale.set(scale, scale, scale);
 	 
 	 scene.add(projector);
 
 }
 
-function createProjectorBody1(scene, _x_, _y_, _z_) {
+function createProjectorBody1(projector, _x_, _y_, _z_) {
 	function createBoxWithRoundedEdges1( width, height, depth, radius0, smoothness ) {
 	  let shape = new THREE.Shape();
 	  let eps = 0.00001;
@@ -96,10 +99,10 @@ function createProjectorBody1(scene, _x_, _y_, _z_) {
 	 cube.position.x = _x_;
 	 cube.position.y = _y_ + 0.4;
 	 cube.position.z = _z_;
-	 scene.add( cube );
+	 projector.add( cube );
 }
 
-function createProjectorCamera(scene, _x_, _y_, _z_) {
+function createProjectorCamera(projector, _x_, _y_, _z_) {
 	
 	var geometry = new THREE.CylinderGeometry( 0.5, 0.5, 2, 32, 5 );
 	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
@@ -108,9 +111,9 @@ function createProjectorCamera(scene, _x_, _y_, _z_) {
 	cylinder.position.y = _y_;
 	cylinder.position.z = _z_ - 0.35;
 	cylinder.rotateX(Math.PI/360 * 180);
-	scene.add( cylinder );
+	projector.add( cylinder );
 }
-function createProjectorLeftHanger0(scene, _x_, _y_, _z_) {
+function createProjectorLeftHanger0(projector, _x_, _y_, _z_) {
 	/**var light = new THREE.PointLight( 0xFFFFFF, 1, 50 );
 	light.position.set( -0.5, 20, 10.5 );
 	scene.add( light );**/
@@ -121,9 +124,9 @@ function createProjectorLeftHanger0(scene, _x_, _y_, _z_) {
     hanger0.position.x = _x_;
     hanger0.position.y = _y_ + 0.7;
     hanger0.position.z = _z_ - 0.34;
-	scene.add(hanger0);
+	projector.add(hanger0);
 }
-function createProjectorLeftHangerJoint0(scene, _x_, _y_, _z_) {
+function createProjectorLeftHangerJoint0(projector, _x_, _y_, _z_) {
 	var geometry0 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
 	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
 	var cylinder0 = new THREE.Mesh( geometry0, cylinderMaterial, 2, 5 );
@@ -131,9 +134,9 @@ function createProjectorLeftHangerJoint0(scene, _x_, _y_, _z_) {
 	cylinder0.position.y = _y_ + 0.8;
 	cylinder0.position.z = _z_ - 0.34;
 	cylinder0.rotateZ(Math.PI/360 * 180);
-	scene.add( cylinder0 );
+	projector.add( cylinder0 );
 }
-function createProjectorLeftHanger1(scene, _x_, _y_, _z_) {
+function createProjectorLeftHanger1(projector, _x_, _y_, _z_) {
 	var cubeGeometry1 = new THREE.BoxGeometry(0.07, 1, 0.2);
     var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0X8C8C8C });
     var hanger1 = new THREE.Mesh(cubeGeometry1, cubeMeterial, 2, 5);
@@ -141,9 +144,9 @@ function createProjectorLeftHanger1(scene, _x_, _y_, _z_) {
     hanger1.position.y = _y_ + 1;
     hanger1.position.z = _z_;
 	hanger1.rotateX(Math.PI/360 * (120));
-	scene.add(hanger1);
+	projector.add(hanger1);
 }
-function createProjectorLeftHangerJoint1(scene, _x_, _y_, _z_) {
+function createProjectorLeftHangerJoint1(projector, _x_, _y_, _z_) {
 	var geometry1 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
 	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
 	var cylinder1 = new THREE.Mesh( geometry1, cylinderMaterial, 2, 5 );
@@ -151,9 +154,9 @@ function createProjectorLeftHangerJoint1(scene, _x_, _y_, _z_) {
 	cylinder1.position.y = _y_ + 1.2;
 	cylinder1.position.z = _z_ + 0.34;
 	cylinder1.rotateZ(Math.PI/360 * 180);
-	scene.add( cylinder1 );
+	projector.add( cylinder1 );
 }
-function createProjectorLeftHanger2(scene, _x_, _y_, _z_) {
+function createProjectorLeftHanger2(projector, _x_, _y_, _z_) {
 	var cubeGeometry2 = new THREE.BoxGeometry(0.07, 1, 0.2);
 	var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0X8C8C8C });
     var hanger2 = new THREE.Mesh(cubeGeometry2, cubeMeterial, 2, 5);
@@ -162,9 +165,9 @@ function createProjectorLeftHanger2(scene, _x_, _y_, _z_) {
     hanger2.position.y = _y_ + 1.4; //-0.533
     hanger2.position.z = _z_;
 	hanger2.rotateX(Math.PI/360 * (-120));
-	scene.add(hanger2);
+	projector.add(hanger2);
 }
-function createProjectorLeftHangerJoint2(scene, _x_, _y_, _z_) {
+function createProjectorLeftHangerJoint2(projector, _x_, _y_, _z_) {
 	var geometry2 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
 	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
 	var cylinder2 = new THREE.Mesh( geometry2, cylinderMaterial, 2, 5 );
@@ -172,9 +175,9 @@ function createProjectorLeftHangerJoint2(scene, _x_, _y_, _z_) {
 	cylinder2.position.y = _y_ + 1.6; //-0.237
 	cylinder2.position.z = _z_ - 0.34;
 	cylinder2.rotateZ(Math.PI/360 * 180);
-	scene.add( cylinder2 );
+	projector.add( cylinder2 );
 }
-function createProjectorLeftHanger3(scene, _x_, _y_, _z_) {
+function createProjectorLeftHanger3(projector, _x_, _y_, _z_) {
 	var cubeGeometry3 = new THREE.BoxGeometry(0.07, 1, 0.2);
 	var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0X8C8C8C });
     var hanger3 = new THREE.Mesh(cubeGeometry3, cubeMeterial, 2, 5);
@@ -183,10 +186,10 @@ function createProjectorLeftHanger3(scene, _x_, _y_, _z_) {
     hanger3.position.y = _y_ + 1.8;
     hanger3.position.z = _z_;
 	hanger3.rotateX(Math.PI/360 * (120));
-	scene.add(hanger3);
+	projector.add(hanger3);
 }
 
-function createCable(scene, _x_, _y_, _z_, r, c) {
+function createCable(projector, _x_, _y_, _z_, r, c) {
     var legPoints = [
         new THREE.Vector3(_x_ + 1, _y_ + 0.2, _z_ + 0.8),
         new THREE.Vector3(_x_ + 1.8, _y_ + 0.7, _z_ + 1),
@@ -211,12 +214,12 @@ function createCable(scene, _x_, _y_, _z_, r, c) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: c, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
-    scene.add(mesh);
+    projector.add(mesh);
 }
 
 //-----------------------------------------------------------------------------------
 
-function createFluorescentBase0(scene, a, b, c, intensity, scale, p_x, p_y, p_z) {
+function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale) {
 	var fluorescent = new THREE.Group();
     var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 80));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);

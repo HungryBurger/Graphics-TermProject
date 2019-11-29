@@ -292,7 +292,7 @@ function wheel(Desk, x, y, z) {
     Desk.add(group);
 }
 
-function two_drawDesk(scene, x, y, z) {
+function two_drawDesk(set, x, y, z) {
     var Desk = new THREE.Group();
     var deskSize = 1;
     this.makeBoard(Desk, 1);
@@ -316,10 +316,10 @@ function two_drawDesk(scene, x, y, z) {
     Desk.position.y = y;
     Desk.position.z = z;
 
-    scene.add(Desk);
+    set.add(Desk);
 }
 
-function three_drawDesk(scene, x, y, z) {
+function three_drawDesk(set, x, y, z) {
     var Desk = new THREE.Group();
     var deskSize = 1.5;
     this.makeBoard(Desk, 1.5);
@@ -343,7 +343,7 @@ function three_drawDesk(scene, x, y, z) {
     Desk.position.y = y;
     Desk.position.z = z;
     
-    scene.add(Desk);
+    set.add(Desk);
 }
 
 
@@ -676,7 +676,7 @@ function chairSeat(Chair, x, y, z) {
     Chair.add(mesh);
 }
 
-function drawChair(scene, x, y, z) {
+function drawChair(set, x, y, z) {
     var Chair = new THREE.Group();
 
     chairBack1(Chair);
@@ -704,18 +704,30 @@ function drawChair(scene, x, y, z) {
     Chair.position.y = y;
     Chair.position.z = z;
 
-    scene.add(Chair);
+    set.add(Chair);
 }
 
-function two_person_set(scene, x, y, z) {
-    two_drawDesk(scene, x, y, z);
-    drawChair(scene, x, y, z+10);
-    drawChair(scene, x, y, z-10);
+function two_person_set(scene, x, y, z, scale) {
+    var set = new THREE.Group();
+    two_drawDesk(set, 0, 0, 0);
+    drawChair(set, 0, -2, 10);
+    drawChair(set, 0, -2, -10);
+    
+    set.scale.set(scale, scale, scale);
+    set.position.set(x, y, z);
+
+    scene.add(set);
 }
 
-function three_person_set(scene, x, y, z){
-    three_drawDesk(scene, x, y, z);
-    drawChair(scene, x, y, z);
-    drawChair(scene, x, y, z+18);
-    drawChair(scene, x, y, z-18);
+function three_person_set(scene, x, y, z, scale){
+    var set = new THREE.Group();
+    three_drawDesk(set, 0, 0, 0);
+    drawChair(set, 0, -2, 0);
+    drawChair(set, 0, -2, 18);
+    drawChair(set, 0, -2, -18);
+    
+    set.scale.set(scale, scale, scale);
+    set.position.set(x, y, z);
+
+    scene.add(set);
 }

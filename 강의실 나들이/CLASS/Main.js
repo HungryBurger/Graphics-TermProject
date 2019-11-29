@@ -32,11 +32,23 @@ window.onload = function init() {
    drawClassRoom(scene);
    //drawAisle(scene);
    makeWhiteboard(scene, 170, 110, 200, 9.5);
-   makeLectureDesk(scene, 200, 75, 200);
-   two_person_set(scene, 200, 50, 200);
-   this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 10, 80, 185, 110);
-   this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 10, 80, 185, 310); 
+   makeLectureDesk(scene, 120, 61, 240);
    
+   fluorescent_line = 2;
+   for(i=0; i<fluorescent_line; i++){
+      this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i+1), 185, 110, 10);
+      this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i+1), 185, 310, 10); 
+   }
+   
+   this.createProjectorBody0(scene, 0, 0, 0, 120, 165, 100, 8);
+
+   desk_line = 1;
+   for(i=0; i<desk_line; i++){
+      this.two_person_set(scene, 150 * (i+1), 35, 200, 2.2);
+      this.three_person_set(scene, 150 * (i+1), 35, 50, 2.2);
+      this.three_person_set(scene, 150 * (i+1), 35, 350, 2.2);
+   }
+
    //Let's make a cube
    //JHJ.js 파일 확인할 것
    //요런식으로 쓰면 될듯(애니메이션 쓸거면 이렇게 함수에서 return 시켜서 데려와야댐)
