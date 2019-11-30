@@ -205,7 +205,7 @@ function makeScreen_front( ) {
 function makeScreen_top(scene) {
     var cubeGeometry = new THREE.BoxGeometry(10.6, 10.6, 182.6);
     texture.rotation = Math.PI / 360 * 180;
-    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x333333});
+    var cubeMaterial = new THREE.MeshBasicMaterial({ color:0x333333, metalness: 0.2, roughness: 0 });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.castShadow = true;
     cube.position.x = 40.5;
