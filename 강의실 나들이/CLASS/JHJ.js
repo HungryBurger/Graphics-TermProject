@@ -1,6 +1,6 @@
 var ClassRoom = new THREE.Group();
 var Aisle = new THREE.Group();
-
+var Screen = new THREE.Group();
 function makeGround(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('ClassRoom_Ground.jpg');
@@ -172,4 +172,50 @@ function drawAisle(scene) {
     makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,-50,'Aisle_Outside.jpg');
 
     scene.add(Aisle);
+}
+var texture = new THREE.TextureLoader().load('table.jpg');
+
+// 스크린 뒷판
+function makeScreen_behind( ) {
+    var cubeGeometry = new THREE.BoxGeometry(140.6, 0.6, 170.6);
+    texture.rotation = Math.PI / 360 * 180;
+    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000});
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.rotation.z = Math.PI * -0.5;
+    cube.position.x = 39.5;
+    cube.position.y = 110.5;
+    cube.position.z = 70;
+    Screen.add(cube);
+}
+
+// 스크린 앞판
+function makeScreen_front( ) {
+    var cubeGeometry = new THREE.BoxGeometry(140.6, 0.6, 160.6);
+    texture.rotation = Math.PI / 360 * 180;
+    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.rotation.z = Math.PI * -0.5;
+    cube.position.x = 40.5;
+    cube.position.y = 110.5;
+    cube.position.z = 70;
+    Screen.add(cube);
+}
+
+//스크린 상판
+function makeScreen_top(scene) {
+    var cubeGeometry = new THREE.BoxGeometry(10.6, 10.6, 182.6);
+    texture.rotation = Math.PI / 360 * 180;
+    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x333333});
+    var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.castShadow = true;
+    cube.position.x = 40.5;
+    cube.position.y = 180.5;
+    cube.position.z = 70;
+    scene.add(cube);
+}
+
+function drawScreen(scene){
+    makeScreen_behind();
+    makeScreen_front();
+    return Screen;
 }
