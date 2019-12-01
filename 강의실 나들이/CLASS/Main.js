@@ -38,7 +38,7 @@ window.onload = function init() {
 
    drawClassRoom(scene);
    drawAisle(scene);
-   makeWhiteboard(scene, 170, 110, 200, 9.5);
+   //makeWhiteboard(scene, 170, 110, 200, 9.5);
    //makeLectureDesk(scene, 120, 61, 240);
    makeScreen_top(scene);
    var Screen = drawScreen(scene);

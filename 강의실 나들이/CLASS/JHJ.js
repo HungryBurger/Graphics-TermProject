@@ -101,9 +101,16 @@ function drawClassRoom(scene) {
     for (var i = 0; i < 16; i++) {
         for (var j = 0; j < 2; j++) {
             makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * i, 35 + 100 * j, -25);
-            makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * i, 35 + 100 * j, 425);
+            if(i!=15)
+                makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * i, 35 + 100 * j, 425);
         }
     }
+    makeWall2(100.6, 0.6, 50.6, 753.5, 35 + 100 , -25 + 400);
+    makeWall2(100.6, 0.6, 50.6, 753.5, 35 + 0 , -25 + 400);
+
+    makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * 15, 35 + 100 * 0, 375);
+    makeWall1(50.6, 0.6, 100.6, 2.5 + 50 * 15, 35 + 100 * 1, 375);
+
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 2; j++) {
             makeWall2(100.6, 0.6, 50.6, 2.5, 35 + 100 * j, -25 + 50 * i);
@@ -218,7 +225,7 @@ function makeScreen_top(scene) {
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.castShadow = true;
     cube.position.x = 40.5;
-    cube.position.y = 180.5;
+    cube.position.y = 178.5;
     cube.position.z = 70;
     scene.add(cube);
 }
