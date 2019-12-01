@@ -117,9 +117,9 @@ function drawClassRoom(scene) {
 }
 
 //여기서부터는 통로 제작
-function makeWall7(x, y, z, pos_x, pos_y, pos_z) {
+function makeWall7(x, y, z, pos_x, pos_y, pos_z,Image) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
-    var texture = new THREE.TextureLoader().load('Aisle_wall.png');
+    var texture = new THREE.TextureLoader().load(Image);
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.rotation.z = Math.PI * -0.5;
@@ -153,24 +153,32 @@ function makeWall9(x, y, z, pos_x, pos_y, pos_z, Image) {
 
 
 function drawAisle(scene) {
-    for (var i = 0; i < 16; i++) {
-        for (var j = 0; j < 4; j++) {
-            if (!(i == 4 && j == 1) && !(i == 4 && j == 0) && !(i == 5 && j == 1) && !(i == 5 && j == 0))
-                makeWall7(50.6, 0.6, 50.6, 804.5, 10 + 50 * j, -28 + 50 * i);
-        }
+    //문 위벽
+    makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 4,'Aisle_wall.png');
+    makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 5,'Aisle_wall.png');
+
+    for (var j = 0; j < 4; j++) {
+        makeWall7(100.6, 0.6, 50.6, 803.5, -70 + 100 * 1, -25 + 50 * j, 'Aisle_wall.png');
+        makeWall7(100.6, 0.6, 50.6, 803.5, -70 + 100 * 2, -25 + 50 * j, 'Aisle_wall.png');
     }
     //옆판
-    makeWall7(200.6, 0.6, 1104.6, 1204.5, 80 ,500);
+    makeWall7(200.6, 0.6, 504.6, 1050, 80 ,200,'Aisle_wall.png');
     //붙는판
-    makeWall7(200.6, 0.6, 704.6, 805, 80 ,750);
+    makeWall7(200.6, 0.6, 204.6, 805, 80 ,350,'Aisle_Attach.jpg');
+    //나가는쪽 붙는판
+   // makeWall7(200.6, 0.6, 104.6, 805, 80 ,150,'Aisle_Attach.jpg');
     //하판  
-    makeWall8(400.6, 1.6, 1104.6, 1004.5, -15 ,500,'Aisle_ground.jpg');
+    for (var i = 0; i < 5; i++) {
+        for (var j = 0; j < 10; j++) {
+            makeGround(50.6, 0.6, 50.6, 800.5 + 50 * i, -15, 0 + 50 * j);
+        }
+    }
     //천장
-    makeWall8(400.6, 0.6, 1104.6, 1004.5, 178 ,500,'Aisle_ground.jpg');
+    makeWall8(250.6, 0.6, 504.6, 928.5, 178 ,200,'Aisle_ground.jpg');
     //입구
-    makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,1000,'Aisle_ground.jpg');
+    makeWall9(250.6, 0.6, 200.6, 928.5, 80 ,450,'AisleEntrance.jpg');
     //반대편 입구
-    makeWall9(400.6, 0.6, 200.6, 1004.5, 80 ,-50,'Aisle_Outside.jpg');
+    makeWall9(250.6, 0.6, 200.6, 928.5, 80 ,-50,'Aisle_Out.jpg');
 
     scene.add(Aisle);
 }
@@ -210,7 +218,7 @@ function makeScreen_top(scene) {
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.castShadow = true;
     cube.position.x = 40.5;
-    cube.position.y = 178.5;
+    cube.position.y = 180.5;
     cube.position.z = 70;
     scene.add(cube);
 }

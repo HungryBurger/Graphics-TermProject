@@ -35,16 +35,16 @@ window.onload = function init() {
 
    //Let's make a plane
    //정적인 object할때는 return 할 필요없어
-   //makePlane(scene);
 
    drawClassRoom(scene);
-   //drawAisle(scene);
-   //makeWhiteboard(scene, 170, 110, 200, 9.5);
+   drawAisle(scene);
+   makeWhiteboard(scene, 170, 110, 200, 9.5);
    //makeLectureDesk(scene, 120, 61, 240);
    makeScreen_top(scene);
    var Screen = drawScreen(scene);
-   scene.add(Screen);/*
-   fluorescent_line = 2;
+   scene.add(Screen);
+   /*
+  fluorescent_line = 2;
     for (i = 0; i < fluorescent_line; i++) {
        this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
        this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
@@ -58,8 +58,8 @@ window.onload = function init() {
        this.three_person_set(scene, 150 * (i + 1), 35, 50, 2.2);
        this.three_person_set(scene, 150 * (i + 1), 35, 350, 2.2);
     }
-    */
-
+    
+*/
    //var whiteboard=makeWhiteboard(scene);
    //var lectureDesk=makeLectureDesk(scene);
    //var roundedBox=createProjectorBody0(scene);
