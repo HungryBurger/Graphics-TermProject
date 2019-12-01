@@ -96,7 +96,7 @@ function drawClassRoom(scene) {
     makeWall3(20.6, 0.6, 100.6, 2.5 + 750, -10.5, 0 + 200);
     makeWall4(50.6, 0.6, 20.6, 2.5 + 775, -10.5, 0 + 250);
     makeWall4(50.6, 0.6, 20.6, 2.5 + 775, -10.5, 0 + 150);
-    
+
     //양 옆벽
     for (var i = 0; i < 16; i++) {
         for (var j = 0; j < 2; j++) {
@@ -106,10 +106,11 @@ function drawClassRoom(scene) {
     }
     for (var i = 0; i < 9; i++) {
         for (var j = 0; j < 2; j++) {
-
             makeWall2(100.6, 0.6, 50.6, 2.5, 35 + 100 * j, -25 + 50 * i);
-            if (!(i == 4 && j == 0) && !(i == 5 && j == 0))
+            if (!(i == 4 && j == 0) && !(i == 5 && j == 0)&&!(i == 4 && j == 1) && !(i == 5 && j == 1))
                 makeWall2(100.6, 0.6, 50.6, 802.5, 35 + 100 * j, -25 + 50 * i);
+            if((i == 4 && j == 1) || (i == 5 && j == 1))
+                makeWall2(70.6, 0.6, 50.6, 802.5, 50 + 100 * j, -25 + 50 * i);
         }
     }
     scene.add(ClassRoom);
@@ -209,7 +210,7 @@ function makeScreen_top(scene) {
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.castShadow = true;
     cube.position.x = 40.5;
-    cube.position.y = 180.5;
+    cube.position.y = 178.5;
     cube.position.z = 70;
     scene.add(cube);
 }
