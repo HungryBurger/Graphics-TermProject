@@ -55,6 +55,7 @@ function makeWall3(x, y, z, pos_x, pos_y, pos_z) {
     cube.position.x = pos_x - 25;
     cube.position.y = pos_y;
     cube.position.z = pos_z + 25;
+    console.log(cube.position);
     ClassRoom.add(cube);
 }
 //턱 벽면
@@ -67,6 +68,7 @@ function makeWall4(x, y, z, pos_x, pos_y, pos_z) {
     cube.position.x = pos_x - 25;
     cube.position.y = pos_y;
     cube.position.z = pos_z + 25;
+    console.log(cube.position);
     ClassRoom.add(cube);
 }
 //천장

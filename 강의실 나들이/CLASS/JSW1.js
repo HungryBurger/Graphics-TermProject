@@ -257,9 +257,7 @@ function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale)
 	
 	fluorescent.rotateY(Math.PI / 180 * 90);
 	fluorescent.scale.set(scale, scale, scale);
-	fluorescent.position.set(p_x, p_y, p_z)
-	console.log(spotLight.position);
-	console.log(fluorescent.position);
+	fluorescent.position.set(p_x, p_y, p_z);
 	scene.add(fluorescent);
 }
 
