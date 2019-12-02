@@ -1,5 +1,5 @@
 // Make Whiteboard
-function makeWhiteboard(scene, x, y, z, scale)
+function makeWhiteboard(B208D, x, y, z, scale)
 {
     var createWhiteBoard = new THREE.Group();
     var xlen=35, ylen=10, zlen=0.125;
@@ -32,7 +32,7 @@ function makeWhiteboard(scene, x, y, z, scale)
     createWhiteBoard.rotateY(Math.PI/180 * 90);
     createWhiteBoard.scale.set(scale, scale, scale);
     createWhiteBoard.position.set(x, y, z);
-    scene.add(createWhiteBoard);
+    B208D.add(createWhiteBoard);
 }
 
 function makeSideBoardframe(createWhiteBoard,x,y,z,xPos,yPos,zPos)
@@ -112,7 +112,7 @@ function makeEdge(createWhiteBoard,x,y,z,xPos,yPos,zPos)
 }
 
 // Make Lecture Desk
-function makeLectureDesk(scene, x, y, z)
+function makeLectureDesk(B208D, x, y, z)
 {
     var createLectureDesk = new THREE.Group();
     var xlen=7.5, ylen=7.5, zlen=6;
@@ -366,7 +366,7 @@ function makeLectureDesk(scene, x, y, z)
     createLectureDesk.rotateY(Math.PI / 180 * 90);
     createLectureDesk.position.set(x, y, z);
     createLectureDesk.scale.set(7.7, 7.7, 7.7);
-    scene.add(createLectureDesk);
+    B208D.add(createLectureDesk);
 }
 
 function lectureDeskWheel(createLectureDesk, x, y, z) {

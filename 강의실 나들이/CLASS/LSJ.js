@@ -707,7 +707,7 @@ function drawChair(set, x, y, z) {
     set.add(Chair);
 }
 
-function two_person_set(scene, x, y, z, scale) {
+function two_person_set(B208D, x, y, z, scale) {
     var set = new THREE.Group();
     two_drawDesk(set, 0, 0, 0);
     drawChair(set, 0, -2, 10);
@@ -716,10 +716,10 @@ function two_person_set(scene, x, y, z, scale) {
     set.scale.set(scale, scale, scale);
     set.position.set(x, y, z);
 
-    scene.add(set);
+    B208D.add(set);
 }
 
-function three_person_set(scene, x, y, z, scale){
+function three_person_set(B208D, x, y, z, scale){
     var set = new THREE.Group();
     three_drawDesk(set, 0, 0, 0);
     drawChair(set, 0, -2, 0);
@@ -729,5 +729,5 @@ function three_person_set(scene, x, y, z, scale){
     set.scale.set(scale, scale, scale);
     set.position.set(x, y, z);
 
-    scene.add(set);
+    B208D.add(set);
 }

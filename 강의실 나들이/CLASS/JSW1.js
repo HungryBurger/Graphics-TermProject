@@ -1,5 +1,5 @@
 
-function createProjectorBody0(scene, a, b, c, p_x, p_y, p_z, scale) {
+function createProjectorBody0(B208D, a, b, c, p_x, p_y, p_z, scale) {
 	var projector = new THREE.Group();
 	function createBoxWithRoundedEdges0( width, height, depth, radius0, smoothness ) {
 	  let shape = new THREE.Shape();
@@ -63,7 +63,7 @@ function createProjectorBody0(scene, a, b, c, p_x, p_y, p_z, scale) {
 	 projector.position.set(p_x, p_y, p_z);
 	 projector.scale.set(scale, scale, scale);
 	 
-	 scene.add(projector);
+	 B208D.add(projector);
 
 }
 
@@ -219,7 +219,7 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
 
 //-----------------------------------------------------------------------------------
 
-function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale) {
+function createFluorescentBase0(B208D, a, b, c, intensity, p_x, p_y, p_z, scale) {
 	var fluorescent = new THREE.Group();
     var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 80));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);
@@ -227,8 +227,8 @@ function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale)
 	spotLight.target.position.set(a + p_x, 0, c + p_z);
 	spotLight.shadow.mapSize.width = 5120;
 	spotLight.shadow.mapSize.height = 5120;
-    scene.add(spotLight.target);
-	scene.add(spotLight);
+    B208D.add(spotLight.target);
+	B208D.add(spotLight);
 	
 	var geometry = new THREE.BoxGeometry( 0.1, 7, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0xBDBDBD } );
@@ -258,7 +258,7 @@ function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale)
 	fluorescent.rotateY(Math.PI / 180 * 90);
 	fluorescent.scale.set(scale, scale, scale);
 	fluorescent.position.set(p_x, p_y, p_z);
-	scene.add(fluorescent);
+	B208D.add(fluorescent);
 }
 
 function createFluorescentBase1(fluorescent, _x_, _y_, _z_) {

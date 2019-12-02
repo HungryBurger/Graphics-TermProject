@@ -83,7 +83,7 @@ function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
     ClassRoom.add(cube);
 }
 //강의실 렌더링
-function drawClassRoom(scene) {
+function drawClassRoom(B208D) {
     for (var i = 0; i < 16; i++) {
         for (var j = 0; j < 9; j++) {
             if (!(i == 15 && j == 4) && !(i == 15 && j == 5)){
@@ -122,7 +122,7 @@ function drawClassRoom(scene) {
                 makeWall2(70.6, 0.6, 50.6, 802.5, 50 + 100 * j, -25 + 50 * i);
         }
     }
-    scene.add(ClassRoom);
+    B208D.add(ClassRoom);
 }
 
 //여기서부터는 통로 제작
@@ -161,7 +161,7 @@ function makeWall9(x, y, z, pos_x, pos_y, pos_z, Image) {
 }
 
 
-function drawAisle(scene) {
+function drawAisle(B208D) {
     //문 위벽
     makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 4,'Aisle_wall.png');
     makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 5,'Aisle_wall.png');
@@ -189,7 +189,7 @@ function drawAisle(scene) {
     //반대편 입구
     makeWall9(250.6, 0.6, 200.6, 928.5, 80 ,-50,'Aisle_Out.jpg');
 
-    scene.add(Aisle);
+    B208D.add(Aisle);
 }
 var texture = new THREE.TextureLoader().load('table.jpg');
 

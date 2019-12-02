@@ -13,23 +13,62 @@ include("JSW1.js");
 //위에부분은 참초하는거니까 건드리지마 ㅇㅋ?
 var ScreenDirection = 0;
 var screenType = 0;
-var Camera;
+var camera;
 var controls;
+var tuck=0;
+var HEIGHT_VALUE=100;
 
 var keyboard = {};
-var player = { height:80.8, speed:8, turnSpeed:Math.PI * 0.01 };
+var player = { height:HEIGHT_VALUE, speed:8, turnSpeed:Math.PI * 0.02 };
 
 function onWindowResize() {
    camera.aspect = window.innerWidth / window.innerHeight;
    camera.updateProjectionMatrix();
    renderer.setSize(window.innerWidth, window.innerHeight);
 }
+
+function drawB208D(scene){
+   var B208D = new THREE.Group();
+   
+   drawClassRoom(B208D);
+   drawAisle(B208D);
+   makeWhiteboard(B208D, 170, 110, 200, 9.5);
+   makeLectureDesk(B208D, 120, 77, 210);
+   makeScreen_top(B208D);
+   var Screen = drawScreen(B208D);
+   B208D.add(Screen);
+   
+   fluorescent_line = 2;
+    for (i = 0; i < fluorescent_line; i++) {
+       this.createFluorescentBase0(B208D, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
+       this.createFluorescentBase0(B208D, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
+    }
+ 
+    this.createProjectorBody0(B208D, 0, 0, 0, 120, 165, 100, 8);
+ 
+    desk_line = 1;
+    for (i = 0; i < desk_line; i++) {
+       this.two_person_set(B208D, 150 + 90 * (i), 35, 200, 2.2);
+       this.three_person_set(B208D, 150 + 90 * (i), 35, 50, 2.2);
+       this.three_person_set(B208D, 150 + 90 * (i), 35, 350, 2.2);
+    }
+    
+   //var whiteboard=makeWhiteboard(scene);
+   //var lectureDesk=makeLectureDesk(scene);
+   //var roundedBox=createProjectorBody0(scene);
+    B208D.rotateY(Math.PI / 180 * 180);
+    B208D.position.x += 900;
+    B208D.position.z += 400;
+
+   scene.add(B208D);
+}
+
 window.onload = function init() {
    var scene = new THREE.Scene();
    camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-	//camera.position.set(929, 52, 227);
+   //camera.position.set(929, 52, 227);
    var renderer = new THREE.WebGLRenderer({ antialias: true });
-
+   
    //For bouncing balls;
    var step = 0;
    renderer.setClearColor(0xEEEEEE);
@@ -46,33 +85,8 @@ window.onload = function init() {
 
    //Let's make a plane
    //정적인 object할때는 return 할 필요없어
-
-   drawClassRoom(scene);
-   drawAisle(scene);
-   makeWhiteboard(scene, 170, 110, 200, 9.5);
-   makeLectureDesk(scene, 120, 77, 210);
-   makeScreen_top(scene);
-   var Screen = drawScreen(scene);
-   scene.add(Screen);
    
-   fluorescent_line = 2;
-    for (i = 0; i < fluorescent_line; i++) {
-       this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
-       this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
-    }
- 
-    this.createProjectorBody0(scene, 0, 0, 0, 120, 165, 100, 8);
- 
-    desk_line = 1;
-    for (i = 0; i < desk_line; i++) {
-       this.two_person_set(scene, 150 * (i + 1), 35, 200, 2.2);
-       this.three_person_set(scene, 150 * (i + 1), 35, 50, 2.2);
-       this.three_person_set(scene, 150 * (i + 1), 35, 350, 2.2);
-    }
-    
-   //var whiteboard=makeWhiteboard(scene);
-   //var lectureDesk=makeLectureDesk(scene);
-   //var roundedBox=createProjectorBody0(scene);
+   this.drawB208D(scene);
 
    var spotLight1 = new THREE.SpotLight(0xFFFFFF);
    spotLight1.position.set(0, 30, 50);
@@ -108,6 +122,48 @@ window.onload = function init() {
    camera.position.set(0, player.height, -5);
    camera.lookAt(new THREE.Vector3(0,player.height,0));
 
+   function move(){
+      var temp_x=camera.position.x;
+      var temp_z=camera.position.z;
+      if(keyboard[87]){ // W key
+         temp_x -= Math.sin(camera.rotation.y) * player.speed;
+         temp_z -= -Math.cos(camera.rotation.y) * player.speed;
+      }
+      if(keyboard[83]){ // S key
+         temp_x += Math.sin(camera.rotation.y) * player.speed;
+         temp_z += -Math.cos(camera.rotation.y) * player.speed;
+      }
+      if(keyboard[65]){ // A key
+         temp_x += Math.sin(camera.rotation.y + Math.PI/2) * player.speed;
+         temp_z += -Math.cos(camera.rotation.y + Math.PI/2) * player.speed;
+      }
+      if(keyboard[68]){ // D key
+         temp_x += Math.sin(camera.rotation.y - Math.PI/2) * player.speed;
+         temp_z += -Math.cos(camera.rotation.y - Math.PI/2) * player.speed;
+      }
+      
+      if(keyboard[37]){ // left arrow key
+         camera.rotation.y -= player.turnSpeed;
+      }
+      if(keyboard[39]){ // right arrow key
+         camera.rotation.y += player.turnSpeed;
+      }
+
+      //check if the camera is still in valid area
+      if((temp_x>-110 && temp_x<80 &&temp_z>-60&&temp_z<420)||
+      (temp_x>80&&temp_x<130&&temp_z>135&&temp_z<220)||
+      (temp_x>130&&temp_x<190&&temp_z>75&&temp_z<420)||
+      (temp_x>190&&temp_x<240&&temp_z>-20&&temp_z<420)||
+      (temp_x>240&&temp_x<780&&temp_z>125&&temp_z<140)||
+      (temp_x>240&&temp_x<780&&temp_z>255&&temp_z<270)||
+      (temp_x>780&&temp_x<860&&temp_z>125&&temp_z<420)||
+      (temp_x>860&&temp_x<880&&temp_z>-20&&temp_z<240))
+      {
+         camera.position.x=temp_x;
+         camera.position.z=temp_z;
+      }
+   }
+   
    var renderScene = new function renderScene() {
       requestAnimationFrame(renderScene);
       
@@ -127,44 +183,31 @@ window.onload = function init() {
             ScreenDirection = 0;
          }
       }
-      if(camera.position.x>1000){
-         camera.position.x = 1000;
+      if((camera.position.x>80&&camera.position.x<190&&camera.position.z>75&&camera.position.z<135)||
+      (camera.position.x>80&&camera.position.x<190&&camera.position.z>220&&camera.position.z<420)||
+      camera.position.x>190)
+      {
+         tuck=1;
       }
-      if(keyboard[87]){ // W key
-         camera.position.x -= Math.sin(camera.rotation.y) * player.speed;
-         camera.position.z -= -Math.cos(camera.rotation.y) * player.speed;
+      else
+      {
+         tuck=0;
       }
-      if(keyboard[83]){ // S key
-         camera.position.x += Math.sin(camera.rotation.y) * player.speed;
-         camera.position.z += -Math.cos(camera.rotation.y) * player.speed;
+      if(tuck==1)
+         {
+            camera.position.y=HEIGHT_VALUE + 20;
+         }
+      else
+      {
+         camera.position.y = HEIGHT_VALUE;
       }
-      if(keyboard[65]){ // A key
-         camera.position.x += Math.sin(camera.rotation.y + Math.PI/2) * player.speed;
-         camera.position.z += -Math.cos(camera.rotation.y + Math.PI/2) * player.speed;
-      }
-      if(keyboard[68]){ // D key
-         camera.position.x += Math.sin(camera.rotation.y - Math.PI/2) * player.speed;
-         camera.position.z += -Math.cos(camera.rotation.y - Math.PI/2) * player.speed;
-      }
-      
-      if(keyboard[37]){ // left arrow key
-         camera.rotation.y -= player.turnSpeed;
-         console.log(camera.position);
-      }
-      if(keyboard[39]){ // right arrow key
-         camera.rotation.y += player.turnSpeed;
-         console.log(camera.position);
-      }
-      if( camera.position.x < 750 && camera.position.x > 0){
-         camera.position.y = 90.8;
-      }
-      if( camera.position.x > 750 ){
-         camera.position.y = 80.8;
-      }
+
+      move();
+
       renderer.render(scene, camera);
+      
    }
 }
-
 
 
 //    document.getElementById("Button2").onclick = function () {
