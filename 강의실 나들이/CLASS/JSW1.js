@@ -277,7 +277,7 @@ function createFluorescentBase0(B208D, a, b, c, intensity, p_x, p_y, p_z, scale)
 	var fluorescent = new THREE.Group();
 
 	// create fluorescent light
-    var spotLight = new THREE.SpotLight(0xEDEDED, intensity, 0, (Math.PI / 180 * 120));
+    var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 120));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);
     spotLight.castShadow = true;
 	spotLight.target.position.set(a + p_x, 0, c + p_z);
@@ -287,7 +287,7 @@ function createFluorescentBase0(B208D, a, b, c, intensity, p_x, p_y, p_z, scale)
 	B208D.add(spotLight);
 	
 	var geometry = new THREE.BoxGeometry( 0.1, 7, 2 );
-	var material = new THREE.MeshPhongMaterial( { color: 0xEDEDED } );
+	var material = new THREE.MeshBasicMaterial( { color: 0xEDEDED } );
 	var cube = new THREE.Mesh( geometry, material );
 	x_ = cube.position.x = a;
 	y_ = cube.position.y = b;
