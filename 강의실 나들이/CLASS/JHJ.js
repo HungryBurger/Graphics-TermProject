@@ -153,7 +153,7 @@ function drawClassRoom(B208D) {
             if (!(i == 4 && j == 0) && !(i == 5 && j == 0)&&!(i == 4 && j == 1) && !(i == 5 && j == 1))
                 makeWall2(100.6, 0.6, 50.6, 802.5, 35 + 100 * j, -25 + 50 * i);
             if((i == 4 && j == 1) || (i == 5 && j == 1))
-                makeWall2(70.6, 0.6, 50.6, 802.5, 50 + 100 * j, -25 + 50 * i);
+            makeWall2(50.6, 0.6, 50.6, 802.5, 60 + 100 * j, -25 + 50 * i);
         }
     }
     B208D.add(ClassRoom);
@@ -197,9 +197,8 @@ function makeWall9(x, y, z, pos_x, pos_y, pos_z, Image) {
 
 function drawAisle(B208D) {
     //문 위벽
-    makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 4,'Aisle_wall.png');
-    makeWall7(70.6, 0.6, 50.6, 803.5, 10 + 70 * 2, -25 + 50 * 5,'Aisle_wall.png');
-
+    makeWall7(50.6, 0.6, 50.6, 803.5, 10 + 75 * 2, -25 + 50 * 4,'Aisle_wall.png');
+    makeWall7(50.6, 0.6, 50.6, 803.5, 10 + 75 * 2, -25 + 50 * 5,'Aisle_wall.png');
     for (var j = 0; j < 4; j++) {
         makeWall7(100.6, 0.6, 50.6, 803.5, -70 + 100 * 1, -25 + 50 * j, 'Aisle_wall.png');
         makeWall7(100.6, 0.6, 50.6, 803.5, -70 + 100 * 2, -25 + 50 * j, 'Aisle_wall.png');
