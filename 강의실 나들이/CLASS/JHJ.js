@@ -205,7 +205,7 @@ function drawAisle(B208D) {
         makeWall7(100.6, 0.6, 50.6, 803.5, -70 + 100 * 2, -25 + 50 * j, 'Aisle_wall.png');
     }
     //옆판
-    makeWall7(200.6, 0.6, 504.6, 1050, 80 ,200,'Aisle_wall.png');
+    makeWall7(200.6, 0.6, 504.6, 1050, 80 ,200,'Aisle_wall_color.png');
     //붙는판
     makeWall7(200.6, 0.6, 204.6, 805, 80 ,350,'Aisle_Attach.jpg');
     //나가는쪽 붙는판
@@ -216,6 +216,7 @@ function drawAisle(B208D) {
             makeGround(50.6, 0.6, 50.6, 800.5 + 50 * i, -15, 0 + 50 * j);
         }
     }
+    
     //천장
     makeWall8(250.6, 0.6, 504.6, 928.5, 178 ,200,'Aisle_ground.jpg');
     //입구
