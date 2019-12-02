@@ -154,7 +154,7 @@ function createProjectorLeftHanger0(projector, _x_, _y_, _z_) {
 // create projector hanger joint
 function createProjectorLeftHangerJoint0(projector, _x_, _y_, _z_) {
 	var geometry0 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
-	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
+	var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0XD5D5D5} );
 	var cylinder0 = new THREE.Mesh( geometry0, cylinderMaterial, 2, 5 );
 
 	// rotation and set postition
@@ -184,7 +184,7 @@ function createProjectorLeftHanger1(projector, _x_, _y_, _z_) {
 // create projector hanger joint
 function createProjectorLeftHangerJoint1(projector, _x_, _y_, _z_) {
 	var geometry1 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
-	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
+	var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0XD5D5D5} );
 	var cylinder1 = new THREE.Mesh( geometry1, cylinderMaterial, 2, 5 );
 	cylinder1.position.x = _x_;
 	cylinder1.position.y = _y_ + 1.2;
@@ -211,7 +211,7 @@ function createProjectorLeftHanger2(projector, _x_, _y_, _z_) {
 // create projector hanger joint
 function createProjectorLeftHangerJoint2(projector, _x_, _y_, _z_) {
 	var geometry2 = new THREE.CylinderGeometry( 0.08, 0.08, 0.1, 32, 5 );
-	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
+	var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0XD5D5D5} );
 	var cylinder2 = new THREE.Mesh( geometry2, cylinderMaterial, 2, 5 );
 	cylinder2.position.x = _x_;
 	cylinder2.position.y = _y_ + 1.6;
@@ -259,7 +259,7 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
     }
     var shape = new THREE.Shape(pts);
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
-    var material2 = new THREE.MeshLambertMaterial({ color: c, wireframe: false });
+    var material2 = new THREE.MeshPhongMaterial({ color: c, wireframe: false });
 	var mesh = new THREE.Mesh(geometry, material2);
 	        
     //add shadow
@@ -272,7 +272,7 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
 
 //-----------------------------------------------------------------------------------
 function createSpotLight(a, b, c, intensity, p_x, p_y, p_z){
-	var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 120));
+	var spotLight = new THREE.SpotLight(0x939393, intensity, 0, (Math.PI / 180 * 100));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);
     spotLight.castShadow = true;
 	spotLight.target.position.set(a + p_x, 0, c + p_z);

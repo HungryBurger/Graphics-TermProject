@@ -17,18 +17,17 @@ var camera;
 var controls;
 var tuck = 0;
 var HEIGHT_VALUE = 100;
-var intensityValue = 0.34;
+var intensityValue = 0.005;
 var lightOnOff = 1;
 var light1;
 var light2;
 var lightList = [];
 var keyboard = {};
-var player = { height: HEIGHT_VALUE, speed: 8, turnSpeed: Math.PI * 0.02 };
+var player = { height: HEIGHT_VALUE, speed: 6, turnSpeed: Math.PI * 0.01 };
 
 function onWindowResize() {
    camera.aspect = window.innerWidth / window.innerHeight;
    camera.updateProjectionMatrix();
-   renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function drawB208D(scene) {
@@ -42,9 +41,10 @@ function drawB208D(scene) {
    var Screen = drawScreen(B208D);
    B208D.add(Screen);
    
-   fluorescent_line = 2;
+   fluorescent_line = 4;
    for (i = 0; i < fluorescent_line; i++) {
       this.createFluorescentBase0(B208D, 0, 0, 0, intensityValue, 80 * (i + (i + 1) + (0.5 * i)), 183, 110, 10);
+      console.log(intensityValue)
       this.createFluorescentBase0(B208D, 0, 0, 0, intensityValue, 80 * (i + (i + 1) + (0.5 * i)), 183, 310, 10);
       light1 = createSpotLight(0, 0, 0, intensityValue, 80 * (i + (i + 1) + (0.5 * i)), 183, 110);
       lightList.push(light1);
@@ -56,13 +56,13 @@ function drawB208D(scene) {
       B208D.add(light2);
    }
 
-   this.createProjectorBody0(B208D, 0, 0, 0, 140, 165, 100, 8);
+   this.createProjectorBody0(B208D, 0, 0, 0, 170, 165, 100, 8);
 
-   desk_line = 1;
+   desk_line = 5;
    for (i = 0; i < desk_line; i++) {
-      this.two_person_set(B208D, 150 + 90 * (i), 35, 200, 2.2);
-      this.three_person_set(B208D, 150 + 90 * (i), 35, 50, 2.2);
-      this.three_person_set(B208D, 150 + 90 * (i), 35, 350, 2.2);
+      this.two_person_set(B208D, 150 + 90 * (1.3 * i), 35, 200, 2.2);
+      this.three_person_set(B208D, 150 + 90 * (1.3 * i), 35, 50, 2.2);
+      this.three_person_set(B208D, 150 + 90 * (1.3 * i), 35, 350, 2.2);
    }
 
    B208D.rotateY(Math.PI / 180 * 180);
