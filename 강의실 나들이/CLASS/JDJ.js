@@ -365,7 +365,7 @@ function makeLectureDesk(scene, x, y, z)
 
     createLectureDesk.rotateY(Math.PI / 180 * 90);
     createLectureDesk.position.set(x, y, z);
-    createLectureDesk.scale.set(6, 6, 6);
+    createLectureDesk.scale.set(7.7, 7.7, 7.7);
     scene.add(createLectureDesk);
 }
 

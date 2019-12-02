@@ -15,6 +15,10 @@ var ScreenDirection = 0;
 var screenType = 0;
 var Camera;
 var controls;
+
+var keyboard = {};
+var player = { height:80.8, speed:8, turnSpeed:Math.PI * 0.01 };
+
 function onWindowResize() {
    camera.aspect = window.innerWidth / window.innerHeight;
    camera.updateProjectionMatrix();
@@ -23,7 +27,7 @@ function onWindowResize() {
 window.onload = function init() {
    var scene = new THREE.Scene();
    camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-	camera.position.set(929, 52, 227);
+	//camera.position.set(929, 52, 227);
    var renderer = new THREE.WebGLRenderer({ antialias: true });
 
    //For bouncing balls;
@@ -33,18 +37,25 @@ window.onload = function init() {
    renderer.setSize(window.innerWidth, window.innerHeight);
    renderer.shadowMap.enabled = true;
 
+   document.getElementById("Button1").onclick = function () {
+      ScreenDirection = 1;
+   }
+   document.getElementById("Button2").onclick = function () {
+      ScreenDirection = -1;
+   }
+
    //Let's make a plane
    //정적인 object할때는 return 할 필요없어
 
    drawClassRoom(scene);
    drawAisle(scene);
-   //makeWhiteboard(scene, 170, 110, 200, 9.5);
-   //makeLectureDesk(scene, 120, 61, 240);
+   makeWhiteboard(scene, 170, 110, 200, 9.5);
+   makeLectureDesk(scene, 120, 77, 210);
    makeScreen_top(scene);
    var Screen = drawScreen(scene);
    scene.add(Screen);
-   /*
-  fluorescent_line = 2;
+   
+   fluorescent_line = 2;
     for (i = 0; i < fluorescent_line; i++) {
        this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
        this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
@@ -59,7 +70,6 @@ window.onload = function init() {
        this.three_person_set(scene, 150 * (i + 1), 35, 350, 2.2);
     }
     
-*/
    //var whiteboard=makeWhiteboard(scene);
    //var lectureDesk=makeLectureDesk(scene);
    //var roundedBox=createProjectorBody0(scene);
@@ -72,21 +82,35 @@ window.onload = function init() {
    scene.add(spotLight1);
 
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
-   controls = new THREE.OrbitControls(camera, renderer.domElement);
-   controls.maxPolarAngle = Math.PI * 0.5;
-   controls.minDistance = 1000;
-   controls.maxDistance = 5000;
-   // controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
-   // controls.zoomSpeed = 1.0; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
-   // controls.panSpeed = 10.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
-   // controls.minDistance = 900; // 마우스 휠로 카메라 거리 조작시 최소 값. 기본값(Float)은 0 입니다.
-   // controls.maxDistance = 1000; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다
+   // controls = new THREE.OrbitControls(camera, renderer.domElement);
+   // controls.maxPolarAngle = Math.PI * 0.5;
+   // controls.minDistance = 1000;
+   // controls.maxDistance = 5000;
+   // // controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
+   // // controls.zoomSpeed = 1.0; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
+   // // controls.panSpeed = 10.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
+   // // controls.minDistance = 900; // 마우스 휠로 카메라 거리 조작시 최소 값. 기본값(Float)은 0 입니다.
+   // // controls.maxDistance = 1000; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다
   
+   function keyDown(event){
+      keyboard[event.keyCode] = true;
+   }
+   
+   function keyUp(event){
+      keyboard[event.keyCode] = false;
+   }
+   
+   window.addEventListener('keydown', keyDown);
+   window.addEventListener('keyup', keyUp);
+
    window.addEventListener('resize', onWindowResize, false);
+
+   camera.position.set(0, player.height, -5);
+   camera.lookAt(new THREE.Vector3(0,player.height,0));
 
    var renderScene = new function renderScene() {
       requestAnimationFrame(renderScene);
-      renderer.render(scene, camera);
+      
       //스크린 올리기
       if (ScreenDirection == 1) {
          if (Screen.position.y < 130) {
@@ -103,15 +127,44 @@ window.onload = function init() {
             ScreenDirection = 0;
          }
       }
-      document.getElementById("Button1").onclick = function () {
-         ScreenDirection = 1;
+      if(camera.position.x>1000){
+         camera.position.x = 1000;
       }
-      document.getElementById("Button2").onclick = function () {
-         ScreenDirection = -1;
+      if(keyboard[87]){ // W key
+         camera.position.x -= Math.sin(camera.rotation.y) * player.speed;
+         camera.position.z -= -Math.cos(camera.rotation.y) * player.speed;
       }
-      controls.update();
+      if(keyboard[83]){ // S key
+         camera.position.x += Math.sin(camera.rotation.y) * player.speed;
+         camera.position.z += -Math.cos(camera.rotation.y) * player.speed;
+      }
+      if(keyboard[65]){ // A key
+         camera.position.x += Math.sin(camera.rotation.y + Math.PI/2) * player.speed;
+         camera.position.z += -Math.cos(camera.rotation.y + Math.PI/2) * player.speed;
+      }
+      if(keyboard[68]){ // D key
+         camera.position.x += Math.sin(camera.rotation.y - Math.PI/2) * player.speed;
+         camera.position.z += -Math.cos(camera.rotation.y - Math.PI/2) * player.speed;
+      }
+      
+      if(keyboard[37]){ // left arrow key
+         camera.rotation.y -= player.turnSpeed;
+         console.log(camera.position);
+      }
+      if(keyboard[39]){ // right arrow key
+         camera.rotation.y += player.turnSpeed;
+         console.log(camera.position);
+      }
+      if( camera.position.x < 750 && camera.position.x > 0){
+         camera.position.y = 90.8;
+      }
+      if( camera.position.x > 750 ){
+         camera.position.y = 80.8;
+      }
+      renderer.render(scene, camera);
    }
 }
+
 
 
 //    document.getElementById("Button2").onclick = function () {
