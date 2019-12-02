@@ -33,8 +33,7 @@ function createProjectorBody0(B208D, a, b, c, p_x, p_y, p_z, scale) {
 
 	 let cube = new THREE.Mesh( createBoxWithRoundedEdges0( 2.5, 1, 2, 0.5 / 9, 16 ), cubeMat );
 	 	 	        
-    //add shadow
-	cube.castShadow = true;    
+    //add shadow 
 	cube.receiveShadow = true;
 
 	 cube.scale.setScalar( 1.25 );
@@ -119,7 +118,6 @@ function createProjectorCamera(projector, _x_, _y_, _z_) {
 	var cylinder = new THREE.Mesh( geometry, cylinderMaterial, 2, 5 );
 	        
     //add shadow
-	cylinder.castShadow = true;    
 	cylinder.receiveShadow = true;
 
 	cylinder.position.x = _x_ + 0.6; //0, 10, 10
@@ -135,10 +133,6 @@ function createProjectorLeftHanger0(projector, _x_, _y_, _z_) {
 	var cubeGeometry0 = new THREE.BoxGeometry(0.07, 0.5, 0.2);
     var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0X8C8C8C });
 	var hanger0 = new THREE.Mesh(cubeGeometry0, cubeMeterial, 2, 5);
-	        
-    //add shadow
-	hanger0.castShadow = true;    
-	//hanger0.receiveShadow = true;
 
     hanger0.position.x = _x_;
     hanger0.position.y = _y_ + 0.7;
@@ -331,11 +325,6 @@ function createFluorescentBase6(fluorescent, _x_, _y_, _z_) {
 	var geometry = new THREE.BoxGeometry( 0.2, 0.27, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0x5D5D5D } );
 	var cube = new THREE.Mesh( geometry, material );
-		 	        
-    //add shadow
-	cube.castShadow = true;    
-	cube.receiveShadow = true;
-
 	cube.position.x = _x_ - 3.4;
 	cube.position.y = _y_ - 0.17;
 	cube.position.z = _z_;

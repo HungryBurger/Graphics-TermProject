@@ -40,11 +40,11 @@ function drawB208D(scene){
    
    fluorescent_line = 2;
     for (i = 0; i < fluorescent_line; i++) {
-       this.createFluorescentBase0(B208D, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
-       this.createFluorescentBase0(B208D, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
+       this.createFluorescentBase0(B208D, 0, 0, 0, 0.34, 80 * (i + 1), 185, 110, 10);
+       this.createFluorescentBase0(B208D, 0, 0, 0, 0.34, 80 * (i + 1), 185, 310, 10);
     }
  
-    this.createProjectorBody0(B208D, 0, 0, 0, 120, 165, 100, 8);
+    this.createProjectorBody0(B208D, 0, 0, 0, 140, 165, 100, 8);
  
     desk_line = 1;
     for (i = 0; i < desk_line; i++) {

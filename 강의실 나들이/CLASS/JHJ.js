@@ -236,7 +236,7 @@ function makeScreen_behind( ) {
         
     //add shadow render
     cube.castShadow = true;
-    cube.receiveShadow = true;
+    //cube.receiveShadow = true;
 
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = 39.5;
@@ -254,7 +254,7 @@ function makeScreen_front( ) {
 
     //add shadow render
     cube.castShadow = true;
-    cube.receiveShadow = true;
+    //cube.receiveShadow = true;
 
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = 40.5;
@@ -271,7 +271,7 @@ function makeScreen_top(scene) {
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
     //add shadow render
-    cube.castShadow = true;
+    //cube.castShadow = true;
     cube.receiveShadow = true;
 
     cube.position.x = 40.5;
@@ -284,6 +284,9 @@ function makeScreen_Cylinder(){
     var geometry = new THREE.CylinderBufferGeometry(2.3, 2.3, 180, 32);
     var material = new THREE.MeshBasicMaterial({ color: 0xCCCCCC });
     var cylinder = new THREE.Mesh(geometry, material);
+    //add shadow render
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
     cylinder.position.x = 41.05;
     cylinder.position.y = 40.5;
     cylinder.position.z = 70.5;
