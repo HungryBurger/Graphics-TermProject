@@ -88,12 +88,12 @@ window.onload = function init() {
    
    this.drawB208D(scene);
 
-   var spotLight1 = new THREE.SpotLight(0xFFFFFF);
-   spotLight1.position.set(0, 30, 50);
-   spotLight1.castShadow = true;
-   spotLight1.shadow.mapSize.width = 5120;
-   spotLight1.shadow.mapSize.height = 5120;
-   scene.add(spotLight1);
+   // var spotLight1 = new THREE.SpotLight(0xFFFFFF);
+   // spotLight1.position.set(0, 30, 50);
+   // spotLight1.castShadow = true;
+   // spotLight1.shadow.mapSize.width = 5120;
+   // spotLight1.shadow.mapSize.height = 5120;
+   // scene.add(spotLight1);
 
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
    // controls = new THREE.OrbitControls(camera, renderer.domElement);
