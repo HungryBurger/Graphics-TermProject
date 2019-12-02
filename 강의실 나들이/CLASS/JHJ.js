@@ -231,9 +231,21 @@ function makeScreen_top(scene) {
     cube.position.z = 70;
     scene.add(cube);
 }
-
+//스크린 밑
+function makeScreen_Cylinder(){
+    var geometry = new THREE.CylinderBufferGeometry(2.3, 2.3, 180, 32);
+    var material = new THREE.MeshBasicMaterial({ color: 0xCCCCCC });
+    var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.position.x = 41.05;
+    cylinder.position.y = 40.5;
+    cylinder.position.z = 70.5;
+    cylinder.rotateX(-Math.PI *0.5);
+    Screen.add(cylinder);
+}
+//Screen drawing
 function drawScreen(scene){
     makeScreen_behind();
     makeScreen_front();
+    makeScreen_Cylinder();
     return Screen;
 }
