@@ -267,7 +267,7 @@ function makeScreen_front( ) {
 function makeScreen_top(scene) {
     var cubeGeometry = new THREE.BoxGeometry(10.6, 10.6, 182.6);
     texture.rotation = Math.PI / 360 * 180;
-    var cubeMaterial = new THREE.MeshBasicMaterial({ color:0x333333, metalness: 0.2, roughness: 0 });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ color:0x333333, metalness: 0.2, roughness: 0 });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
 
     //add shadow render
@@ -282,7 +282,7 @@ function makeScreen_top(scene) {
 //스크린 밑
 function makeScreen_Cylinder(){
     var geometry = new THREE.CylinderBufferGeometry(2.3, 2.3, 180, 32);
-    var material = new THREE.MeshBasicMaterial({ color: 0xCCCCCC });
+    var material = new THREE.MeshPhongMaterial({ color: 0xCCCCCC });
     var cylinder = new THREE.Mesh(geometry, material);
     //add shadow render
     cylinder.castShadow = true;

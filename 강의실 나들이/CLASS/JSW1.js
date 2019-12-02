@@ -270,21 +270,21 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
     projector.add(mesh);
 }
 
-//-------------------------------create fluorescent-----------------------------------
-
-// create fluorescent base 
-function createFluorescentBase0(B208D, a, b, c, intensity, p_x, p_y, p_z, scale) {
-	var fluorescent = new THREE.Group();
-
-	// create fluorescent light
-    var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 120));
+//-----------------------------------------------------------------------------------
+function createSpotLight(a, b, c, intensity, p_x, p_y, p_z){
+	var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 120));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);
     spotLight.castShadow = true;
 	spotLight.target.position.set(a + p_x, 0, c + p_z);
 	spotLight.shadow.mapSize.width = 5120;
 	spotLight.shadow.mapSize.height = 5120;
-    B208D.add(spotLight.target);
-	B208D.add(spotLight);
+	return spotLight;
+    // B208D.add(spotLight.target);
+	// B208D.add(spotLight);
+}
+function createFluorescentBase0(B208D, a, b, c, intensity, p_x, p_y, p_z, scale) {
+	var fluorescent = new THREE.Group();
+    
 	
 	var geometry = new THREE.BoxGeometry( 0.1, 7, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0xEDEDED } );
