@@ -53,9 +53,6 @@ function drawB208D(scene){
        this.three_person_set(B208D, 150 + 90 * (i), 35, 350, 2.2);
     }
     
-   //var whiteboard=makeWhiteboard(scene);
-   //var lectureDesk=makeLectureDesk(scene);
-   //var roundedBox=createProjectorBody0(scene);
     B208D.rotateY(Math.PI / 180 * 180);
     B208D.position.x += 900;
     B208D.position.z += 400;
@@ -66,7 +63,6 @@ function drawB208D(scene){
 window.onload = function init() {
    var scene = new THREE.Scene();
    camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 1, 10000 );
-   //camera.position.set(929, 52, 227);
    var renderer = new THREE.WebGLRenderer({ antialias: true });
    
    //For bouncing balls;
@@ -83,29 +79,10 @@ window.onload = function init() {
       ScreenDirection = -1;
    }
 
-   //Let's make a plane
-   //정적인 object할때는 return 할 필요없어
-   
    this.drawB208D(scene);
 
-   // var spotLight1 = new THREE.SpotLight(0xFFFFFF);
-   // spotLight1.position.set(0, 30, 50);
-   // spotLight1.castShadow = true;
-   // spotLight1.shadow.mapSize.width = 5120;
-   // spotLight1.shadow.mapSize.height = 5120;
-   // scene.add(spotLight1);
-
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
-   // controls = new THREE.OrbitControls(camera, renderer.domElement);
-   // controls.maxPolarAngle = Math.PI * 0.5;
-   // controls.minDistance = 1000;
-   // controls.maxDistance = 5000;
-   // // controls.rotateSpeed = 1.0; // 마우스로 카메라를 회전시킬 속도입니다. 기본값(Float)은 1입니다.
-   // // controls.zoomSpeed = 1.0; // 마우스 휠로 카메라를 줌 시키는 속도 입니다. 기본값(Float)은 1입니다.
-   // // controls.panSpeed = 10.8; // 패닝 속도 입니다. 기본값(Float)은 1입니다.
-   // // controls.minDistance = 900; // 마우스 휠로 카메라 거리 조작시 최소 값. 기본값(Float)은 0 입니다.
-   // // controls.maxDistance = 1000; // 마우스 휠로 카메라 거리 조작시 최대 값. 기본값(Float)은 무제한 입니다
-  
+   
    function keyDown(event){
       keyboard[event.keyCode] = true;
    }
