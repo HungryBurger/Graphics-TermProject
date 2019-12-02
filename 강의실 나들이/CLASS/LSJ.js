@@ -3,8 +3,10 @@ function makeBoard(Desk, scale_z) {
     var cubeGeometry = new THREE.BoxGeometry(15.6, 0.6, 42.6);
     var texture = new THREE.TextureLoader().load('table.jpg');
     texture.rotation = Math.PI / 360 * 180;
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.castShadow = true;
+    cube.receiveShadow = true;
     cube.position.x = 2.5;
     cube.position.y = 10.5;
     cube.position.z = 0;
@@ -15,8 +17,10 @@ function makeBoard(Desk, scale_z) {
 // 테이블 바로 밑 덧붙임 판
 function deskFrame1(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(7, 0.6, 42);
-    var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
+    var material = new THREE.MeshPhongMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.y = 9.9
     mesh.scale.z = scale_z;
     Desk.add(mesh);
@@ -25,8 +29,10 @@ function deskFrame1(Desk, scale_z) {
 // 받침대
 function deskFrame2(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(10, 0.2, 32.5);
-    var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
+    var material = new THREE.MeshPhongMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = 2.5;
     mesh.position.y = 5.5;
     mesh.scale.z = scale_z;
@@ -36,8 +42,10 @@ function deskFrame2(Desk, scale_z) {
 // 다리쪽 가림막
 function deskFrame3(Desk, scale_z) {
     var geometry = new THREE.BoxGeometry(7, 0.2, 36);
-    var material = new THREE.MeshBasicMaterial({ color: 0x333333 });
+    var material = new THREE.MeshPhongMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.rotateZ(Math.PI / 360 * 125.5);
     mesh.position.x = -4;
     mesh.position.y = 4.5;
@@ -50,6 +58,8 @@ function frameHolder1(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
     cylinder.position.x = -3.7;
     cylinder.position.y = 2;
     cylinder.position.z = 17.5 * deskSize;
@@ -60,6 +70,8 @@ function frameHolder2(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
     cylinder.position.x = -3.7;
     cylinder.position.y = 2;
     cylinder.position.z = -17.5 * deskSize;
@@ -96,6 +108,8 @@ function makeLeg1(Desk, deskSize) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0xE7E7E7, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     Desk.add(mesh);
 }
 
@@ -127,6 +141,8 @@ function makeLeg2(Desk, deskSize) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0xE7E7E7, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     Desk.add(mesh);
 }
 
@@ -134,6 +150,8 @@ function legFrame(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
     cylinder.position.x = -1.05;
     cylinder.position.y = 7.5;
     cylinder.position.z = 19.5 * deskSize;
@@ -143,6 +161,8 @@ function legFrame(Desk, deskSize) {
     var geometry2 = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material2 = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder2 = new THREE.Mesh(geometry2, material2);
+    cylinder2.castShadow = true;
+    cylinder2.receiveShadow = true;
     cylinder2.position.x = -1.05;
     cylinder2.position.y = 7.5;
     cylinder2.position.z = 17.5 * deskSize;
@@ -179,6 +199,8 @@ function makeLeg1_2(Desk, deskSize) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0xE7E7E7, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     Desk.add(mesh);
 }
 function makeLeg2_2(Desk, deskSize) {
@@ -209,6 +231,8 @@ function makeLeg2_2(Desk, deskSize) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0xE7E7E7, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     Desk.add(mesh);
 }
 
@@ -216,6 +240,8 @@ function legFrame2(Desk, deskSize) {
     var geometry = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
     cylinder.position.x = -1.05;
     cylinder.position.y = 7.5;
     cylinder.position.z = -19.5 * deskSize;
@@ -225,6 +251,8 @@ function legFrame2(Desk, deskSize) {
     var geometry2 = new THREE.CylinderBufferGeometry(1.3, 1.3, 6, 32);
     var material2 = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder2 = new THREE.Mesh(geometry2, material2);
+    cylinder2.castShadow = true;
+    cylinder2.receiveShadow = true;
     cylinder2.position.x = -1.05;
     cylinder2.position.y = 7.5;
     cylinder2.position.z = -17.5 * deskSize;
@@ -236,20 +264,28 @@ function wheel(Desk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.05, 1.05, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder = new THREE.Mesh(geometry, material);
+    cylinder.castShadow = true;
+    cylinder.receiveShadow = true;
 
     var geometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 1, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x555555 });
     var cylinder2 = new THREE.Mesh(geometry, material);
+    cylinder2.castShadow = true;
+    cylinder2.receiveShadow = true;
     cylinder2.position.y = -0.3;
 
     var geometry = new THREE.CylinderBufferGeometry(0.8, 0.8, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x423800 });
     var cylinder3 = new THREE.Mesh(geometry, material);
+    cylinder3.castShadow = true;
+    cylinder3.receiveShadow = true;
     cylinder3.position.y = -1.2;
 
     var geometry = new THREE.CylinderBufferGeometry(1.5, 1.5, 1.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x423800 });
     var cylinder4 = new THREE.Mesh(geometry, material);
+    cylinder4.castShadow = true;
+    cylinder4.receiveShadow = true;
     cylinder4.position.y = -2.1;
     cylinder4.position.z = -0.7;
     cylinder4.rotateZ(Math.PI / 360 * 180);
@@ -257,6 +293,8 @@ function wheel(Desk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.5, 1.5, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder5 = new THREE.Mesh(geometry, material);
+    cylinder5.castShadow = true;
+    cylinder5.receiveShadow = true;
     cylinder5.position.x = 1;
     cylinder5.position.y = -2.3;
     cylinder5.position.z = -0.7;
@@ -265,6 +303,8 @@ function wheel(Desk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.5, 1.5, 0.3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var cylinder6 = new THREE.Mesh(geometry, material);
+    cylinder6.castShadow = true;
+    cylinder6.receiveShadow = true;
     cylinder6.position.x = -1;
     cylinder6.position.y = -2.3;
     cylinder6.position.z = -0.7;
@@ -273,6 +313,8 @@ function wheel(Desk, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(1.25, 1.25, 2.35, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x423800 });
     var cylinder7 = new THREE.Mesh(geometry, material);
+    cylinder7.castShadow = true;
+    cylinder7.receiveShadow = true;
     cylinder7.position.y = -2.3;
     cylinder7.position.z = -0.7;
     cylinder7.rotateZ(Math.PI / 360 * 180);
@@ -375,6 +417,8 @@ function chairBack1(Chair) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = 15;
     mesh.position.y = 10;
     //mesh.rotateZ(-Math.PI / 360 * 20);
@@ -406,6 +450,8 @@ function chairBack2(Chair) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = 15;
     mesh.position.y = 8;
     //mesh.rotateZ(-Math.PI / 360 * 20);
@@ -414,6 +460,8 @@ function chairBack2(Chair) {
     var geometry = new THREE.CylinderBufferGeometry(0.3, 0.3, 3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.z = 6;
     mesh.position.x = 15;
     mesh.position.y = 8;
@@ -446,6 +494,8 @@ function chairBack3(Chair) {
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material2);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = 15;
     mesh.position.y = 8;
     //mesh.rotateZ(-Math.PI / 360 * 20);
@@ -454,6 +504,8 @@ function chairBack3(Chair) {
     var geometry = new THREE.CylinderBufferGeometry(0.3, 0.3, 3, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333, wireframe: false });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.z = -6;
     mesh.position.x = 15;
     mesh.position.y = 8;
@@ -484,6 +536,8 @@ function armHolder(Chair, x, y, z, direction) {
             0, 0, 0, 1);
     geometry.applyMatrix(shear);
     var mesh = new THREE.Mesh(geometry, new THREE.MeshPhongMaterial({ color: 0x333333 }));
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -520,6 +574,8 @@ function chairLeg1(Chair, x, y, z) {
     //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
     var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -554,6 +610,8 @@ function chairLeg2(Chair, x, y, z) {
     //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
     var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -587,6 +645,8 @@ function chairFrame2(Chair, x, y, z, s_z) {
     //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
     var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -599,6 +659,8 @@ function chairFrame3(Chair, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(0.5, 0.5, 9.25, 32);
     var material = new THREE.MeshStandardMaterial({ color: 0xF6F6F6, metalness: 0.2, roughness: 0 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.rotateZ(Math.PI / 180 * 90);
     mesh.position.x = x;
     mesh.position.y = y;
@@ -617,6 +679,8 @@ function chairFrame1(Chair, x, y, z) {
     geometry.applyMatrix(shear);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;
@@ -627,6 +691,8 @@ function legCover(Chair, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(0.57, 0.57, 1, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
 
     mesh.position.x = x;
     mesh.position.y = y;
@@ -636,6 +702,8 @@ function legCover(Chair, x, y, z) {
     var geometry = new THREE.CylinderBufferGeometry(0.57, 0.7, 0.5, 32);
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y - 0.5;
     mesh.position.z = z;
@@ -669,6 +737,8 @@ function chairSeat(Chair, x, y, z) {
     //var material = new THREE.MeshLambertMaterial({ color: 0xf6f6f6, wireframe: false });
     var material = new THREE.MeshLambertMaterial({ color: 0x333333 });
     var mesh = new THREE.Mesh(geometry, material);
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
     mesh.position.x = x;
     mesh.position.y = y;
     mesh.position.z = z;

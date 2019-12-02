@@ -24,7 +24,7 @@ function createProjectorBody0(scene, a, b, c, p_x, p_y, p_z, scale) {
 	  return geometry;
 	}
 
-	 let cubeMat = new THREE.MeshStandardMaterial( {
+	 let cubeMat = new THREE.MeshPhongMaterial( {
 		color: 0xEAEAEA,
 		//envMap: cubeTexture,
 		metalness: 0,
@@ -32,6 +32,11 @@ function createProjectorBody0(scene, a, b, c, p_x, p_y, p_z, scale) {
 	 } );
 
 	 let cube = new THREE.Mesh( createBoxWithRoundedEdges0( 2.5, 1, 2, 0.5 / 9, 16 ), cubeMat );
+	 	 	        
+    //add shadow
+	cube.castShadow = true;    
+	cube.receiveShadow = true;
+
 	 cube.scale.setScalar( 1.25 );
 	 x_ = cube.position.x = a;
 	 y_ = cube.position.y = b;
@@ -95,6 +100,11 @@ function createProjectorBody1(projector, _x_, _y_, _z_) {
 	roughness: 0,
 	 } );
 	 let cube = new THREE.Mesh( createBoxWithRoundedEdges1( 2.2, 0.5, 1.7, 0.3 / 9, 16 ), cubeMat );
+	 	        
+    //add shadow
+	cube.castShadow = true;    
+	cube.receiveShadow = true;
+
 	 cube.scale.setScalar( 1.25 );
 	 cube.position.x = _x_;
 	 cube.position.y = _y_ + 0.4;
@@ -105,8 +115,13 @@ function createProjectorBody1(projector, _x_, _y_, _z_) {
 function createProjectorCamera(projector, _x_, _y_, _z_) {
 	
 	var geometry = new THREE.CylinderGeometry( 0.5, 0.5, 2, 32, 5 );
-	var cylinderMaterial = new THREE.MeshBasicMaterial( {color: 0XD5D5D5} );
+	var cylinderMaterial = new THREE.MeshPhongMaterial( {color: 0XD5D5D5} );
 	var cylinder = new THREE.Mesh( geometry, cylinderMaterial, 2, 5 );
+	        
+    //add shadow
+	cylinder.castShadow = true;    
+	cylinder.receiveShadow = true;
+
 	cylinder.position.x = _x_ + 0.6; //0, 10, 10
 	cylinder.position.y = _y_;
 	cylinder.position.z = _z_ - 0.35;
@@ -119,8 +134,12 @@ function createProjectorLeftHanger0(projector, _x_, _y_, _z_) {
 	scene.add( light );**/
 	var cubeGeometry0 = new THREE.BoxGeometry(0.07, 0.5, 0.2);
     var cubeMeterial = new THREE.MeshPhongMaterial({ color: 0X8C8C8C });
-    var hanger0 = new THREE.Mesh(cubeGeometry0, cubeMeterial, 2, 5);
-    hanger0.castShadow = true;
+	var hanger0 = new THREE.Mesh(cubeGeometry0, cubeMeterial, 2, 5);
+	        
+    //add shadow
+	hanger0.castShadow = true;    
+	//hanger0.receiveShadow = true;
+
     hanger0.position.x = _x_;
     hanger0.position.y = _y_ + 0.7;
     hanger0.position.z = _z_ - 0.34;
@@ -213,7 +232,12 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
     var shape = new THREE.Shape(pts);
     var geometry = new THREE.ExtrudeBufferGeometry(shape, extrudeSettings);
     var material2 = new THREE.MeshLambertMaterial({ color: c, wireframe: false });
-    var mesh = new THREE.Mesh(geometry, material2);
+	var mesh = new THREE.Mesh(geometry, material2);
+	        
+    //add shadow
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
+
     projector.add(mesh);
 }
 
@@ -221,7 +245,7 @@ function createCable(projector, _x_, _y_, _z_, r, c) {
 
 function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale) {
 	var fluorescent = new THREE.Group();
-    var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 80));
+    var spotLight = new THREE.SpotLight(0xFFFFFF, intensity, 0, (Math.PI / 180 * 120));
     spotLight.position.set(a + p_x, b + p_y, c + p_z);
     spotLight.castShadow = true;
 	spotLight.target.position.set(a + p_x, 0, c + p_z);
@@ -231,10 +255,8 @@ function createFluorescentBase0(scene, a, b, c, intensity, p_x, p_y, p_z, scale)
 	scene.add(spotLight);
 	
 	var geometry = new THREE.BoxGeometry( 0.1, 7, 2 );
-	var material = new THREE.MeshBasicMaterial( { color: 0xBDBDBD } );
-	material.castShadow= true;
+	var material = new THREE.MeshPhongMaterial( { color: 0xBDBDBD } );
 	var cube = new THREE.Mesh( geometry, material );
-
 	x_ = cube.position.x = a;
 	y_ = cube.position.y = b;
 	z_ = cube.position.z = c;
@@ -285,7 +307,7 @@ function createFluorescentBase2(fluorescent, _x_, _y_, _z_) {
 }
 function createFluorescentBase3(fluorescent, _x_, _y_, _z_) {
 	var geometry = new THREE.CylinderGeometry( 0.28, 0.28, 7, 4, 1, false, 3.15, 3.15 );
-	var material = new THREE.MeshStandardMaterial( { color: 0xFCFCFC,  metalness: 0.1, roughness: 0} );
+	var material = new THREE.MeshBasicMaterial( { color: 0x5D5D5D,  metalness: 0.1, roughness: 0} );
 	var cylinder = new THREE.Mesh( geometry, material );
 	cylinder.position.x = _x_;
 	cylinder.position.y = _y_ - 0.02;
@@ -294,16 +316,7 @@ function createFluorescentBase3(fluorescent, _x_, _y_, _z_) {
 	fluorescent.add(cylinder);
 	//scene.add( cylinder );
 }
-/**function createFluorescentBase4(scene, _x_, _y_, _z_) {
-	var geometry = new THREE.CylinderGeometry( 0.43, 0.43, 7, 4, 1, true, 6, 2.5 );
-	var material = new THREE.MeshBasicMaterial( { color: 0x000000 } );
-	var cylinder = new THREE.Mesh( geometry, material );
-	cylinder.position.x = _x_;
-	cylinder.position.y = _y_ + 5.6;
-	cylinder.position.z = _z_ + 0.37;
-	cylinder.rotateZ(Math.PI/360 * 180);
-	scene.add( cylinder );
-}**/
+
 function createFluorescentBase5(fluorescent, _x_, _y_, _z_) {
 	var geometry = new THREE.BoxGeometry( 0.2, 0.27, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0x5D5D5D } );
@@ -318,6 +331,11 @@ function createFluorescentBase6(fluorescent, _x_, _y_, _z_) {
 	var geometry = new THREE.BoxGeometry( 0.2, 0.27, 2 );
 	var material = new THREE.MeshBasicMaterial( { color: 0x5D5D5D } );
 	var cube = new THREE.Mesh( geometry, material );
+		 	        
+    //add shadow
+	cube.castShadow = true;    
+	cube.receiveShadow = true;
+
 	cube.position.x = _x_ - 3.4;
 	cube.position.y = _y_ - 0.17;
 	cube.position.z = _z_;

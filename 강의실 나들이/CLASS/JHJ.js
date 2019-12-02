@@ -4,9 +4,13 @@ var Screen = new THREE.Group();
 function makeGround(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('ClassRoom_Ground.jpg');
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
-    //cube.castShadow = true;
+
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.position.x = pos_x;
     cube.position.y = pos_y;
     cube.position.z = pos_z;
@@ -17,6 +21,11 @@ function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
     var texture = new THREE.TextureLoader().load('ClassRoomGround.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.x = -0.5 * Math.PI;
     cube.position.x = pos_x;
     cube.position.y = pos_y;
@@ -26,8 +35,13 @@ function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
 function makeWall1(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('ClassRoom_Wall.jpg');
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.x = -0.5 * Math.PI;
     cube.position.x = pos_x;
     cube.position.y = pos_y;
@@ -37,8 +51,13 @@ function makeWall1(x, y, z, pos_x, pos_y, pos_z) {
 function makeWall2(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('ClassRoom_Wall.jpg');
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = pos_x - 25;
     cube.position.y = pos_y;
@@ -49,8 +68,13 @@ function makeWall2(x, y, z, pos_x, pos_y, pos_z) {
 function makeWall3(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('Ground.jpg');
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = pos_x - 25;
     cube.position.y = pos_y;
@@ -62,8 +86,13 @@ function makeWall3(x, y, z, pos_x, pos_y, pos_z) {
 function makeWall4(x, y, z, pos_x, pos_y, pos_z) {
     var cubeGeometry = new THREE.BoxGeometry(x, y, z);
     var texture = new THREE.TextureLoader().load('Ground.jpg');
-    var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.x = Math.PI * -0.5;
     cube.position.x = pos_x - 25;
     cube.position.y = pos_y;
@@ -77,6 +106,11 @@ function makeCeiling(x, y, z, pos_x, pos_y, pos_z) {
     var texture = new THREE.TextureLoader().load('ClassRoom_Ceiling.jpg');
     var cubeMaterial = new THREE.MeshBasicMaterial({ map: texture });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    //cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.position.x = pos_x;
     cube.position.y = pos_y + 200;
     cube.position.z = pos_z;
@@ -197,8 +231,13 @@ var texture = new THREE.TextureLoader().load('table.jpg');
 function makeScreen_behind( ) {
     var cubeGeometry = new THREE.BoxGeometry(140.6, 0.6, 170.6);
     texture.rotation = Math.PI / 360 * 180;
-    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0x000000});
+    var cubeMaterial = new THREE.MeshPhongMaterial({ color: 0x000000});
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = 39.5;
     cube.position.y = 110.5;
@@ -210,8 +249,13 @@ function makeScreen_behind( ) {
 function makeScreen_front( ) {
     var cubeGeometry = new THREE.BoxGeometry(140.6, 0.6, 160.6);
     texture.rotation = Math.PI / 360 * 180;
-    var cubeMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff });
+    var cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+    //add shadow render
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.rotation.z = Math.PI * -0.5;
     cube.position.x = 40.5;
     cube.position.y = 110.5;
@@ -225,7 +269,11 @@ function makeScreen_top(scene) {
     texture.rotation = Math.PI / 360 * 180;
     var cubeMaterial = new THREE.MeshBasicMaterial({ color:0x333333, metalness: 0.2, roughness: 0 });
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+
+    //add shadow render
     cube.castShadow = true;
+    cube.receiveShadow = true;
+
     cube.position.x = 40.5;
     cube.position.y = 178.5;
     cube.position.z = 70;

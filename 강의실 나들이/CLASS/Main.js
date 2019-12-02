@@ -57,8 +57,8 @@ window.onload = function init() {
    
    fluorescent_line = 2;
     for (i = 0; i < fluorescent_line; i++) {
-       this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 110, 10);
-       this.createFluorescentBase0(scene, 0, 0, 0, 0.5, 80 * (i + 1), 185, 310, 10);
+       this.createFluorescentBase0(scene, 0, 0, 0, 0.34, 80 * (i + (i + 1) + (0.5 * i)), 185, 110, 10);
+       this.createFluorescentBase0(scene, 0, 0, 0, 0.34, 80 * (i + (i + 1) + (0.5 * i)), 185, 310, 10);
     }
  
     this.createProjectorBody0(scene, 0, 0, 0, 120, 165, 100, 8);
@@ -74,12 +74,12 @@ window.onload = function init() {
    //var lectureDesk=makeLectureDesk(scene);
    //var roundedBox=createProjectorBody0(scene);
 
-   var spotLight1 = new THREE.SpotLight(0xFFFFFF);
-   spotLight1.position.set(0, 30, 50);
-   spotLight1.castShadow = true;
-   spotLight1.shadow.mapSize.width = 5120;
-   spotLight1.shadow.mapSize.height = 5120;
-   scene.add(spotLight1);
+   // var spotLight1 = new THREE.SpotLight(0xFFFFFF);
+   // spotLight1.position.set(0, 30, 50);
+   // spotLight1.castShadow = true;
+   // spotLight1.shadow.mapSize.width = 5120;
+   // spotLight1.shadow.mapSize.height = 5120;
+   // scene.add(spotLight1);
 
    document.getElementById("threejs_scene").appendChild(renderer.domElement);
    // controls = new THREE.OrbitControls(camera, renderer.domElement);
