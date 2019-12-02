@@ -633,7 +633,7 @@ function makeMic(createLectureDesk, x, y, z) {
     createLectureDesk.add(mesh);
 
     var micBall1Geometry = new THREE.SphereGeometry(0.15,32,32);
-    var micBall1Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    var micBall1Material = new THREE.MeshPhongMaterial({ color: 0x000000 });
     var micBall1 = new THREE.Mesh(micBall1Geometry, micBall1Material);
             
     //add shadow
@@ -646,7 +646,7 @@ function makeMic(createLectureDesk, x, y, z) {
     createLectureDesk.add(micBall1);
 
     var micCapGeometry=new THREE.CylinderGeometry(0.15,0.125,0.2,32);
-    var micCapMaterial=new THREE.MeshBasicMaterial({color:0x000000});
+    var micCapMaterial=new THREE.MeshPhongMaterial({color:0x000000});
     var micCap=new THREE.Mesh(micCapGeometry,micCapMaterial);
             
     //add shadow
@@ -659,7 +659,7 @@ function makeMic(createLectureDesk, x, y, z) {
     createLectureDesk.add(micCap);
 
     var micBall2Geometry = new THREE.SphereGeometry(0.125,32,32);
-    var micBall2Material = new THREE.MeshBasicMaterial({ color: 0x000000 });
+    var micBall2Material = new THREE.MeshPhongMaterial({ color: 0x000000 });
     var micBall2 = new THREE.Mesh(micBall2Geometry, micBall2Material);
             
     //add shadow
