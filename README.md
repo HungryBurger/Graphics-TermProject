@@ -10,26 +10,7 @@
 
 ## Introduce
 ```
-Let me introduce our Class Room Project
+Let me introduce our 208D Class Room Project
 
 ```
 
-## Strategy
-```
-
-
-```
-
-## Roles
-```
-> 이세진
-> 장동주
-> 주형진
-> 전성욱
-
-```
-
-## Schedule 
-```
-
-```
