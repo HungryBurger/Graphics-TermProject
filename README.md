@@ -1,4 +1,4 @@
-# Class Room(Graphics TermProject)
+# 강의실 나들이(Graphics TermProject)
 <hr>
 
 
