@@ -7,6 +7,19 @@
 > 주형진
 > 전성욱
 
+
+## Button Event
+```
+Screen up / down
+Light turn on/off
+```
+## Keyboard Event
+```
+Keyboard Event 
+Position change 'W A S D'  
+Sight change ' <- -> '
+
+```
 ## Setting
 There is Chrome right Issue
 1. Add a follow descript in chrome prorperty(--allow-file-access-from-files)
