@@ -50,6 +50,8 @@ Let me introduce our 208D Class Room Project
 
 ## Reference
 ```
+https://webglfundamentals.org/
+https://www.cs.unm.edu/~angel/BOOK/INTERACTIVE_COMPUTER_GRAPHICS/SEVENTH_EDITION/
 https://threejs.org/
 https://webglfundamentals.org/webgl/lessons/ko/webgl-fundamentals.html
 https://www.vobour.com/threejs%EB%A5%BC-%EB%B0%B0%EC%9B%8C%EB%B3%B4%EC%9E%90-%E2%80%93-chapter-1
