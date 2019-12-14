@@ -42,10 +42,14 @@ Let me introduce our 208D Class Room Project
 ```
 
 ## Picture
-<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe1.png" width="400" height ="250"> 
-<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe2.png" width="400" height ="250">
-<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe3.png" width="400" height ="250">
-<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe4.png" width="400" height ="250">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe1.png" width="300" height ="200"> 
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe2.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe3.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe4.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe5.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe6.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe7.png" width="300" height ="200">
+<img src="https://github.com/MCJoo/Graphics-TermProject/blob/master/%EA%B0%95%EC%9D%98%EC%8B%A4%20%EB%82%98%EB%93%A4%EC%9D%B4/ReadMeImage/ReadMe8.png" width="300" height ="200">
 
 
 ## Reference
